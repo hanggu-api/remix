@@ -31,6 +31,7 @@ interface NavbarProps {
   onOpenFinanceModal?: () => void;
   onOpenWarrantyModal?: () => void;
   onOpenGeminiChat?: () => void;
+  onOpenCloudflareModal?: () => void;
   firebaseUser?: any;
   onGoogleSignIn?: () => void;
   onGoogleSignOut?: () => void;
@@ -54,6 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenFinanceModal,
   onOpenWarrantyModal,
   onOpenGeminiChat,
+  onOpenCloudflareModal,
   firebaseUser,
   onGoogleSignIn,
   onGoogleSignOut,
@@ -62,22 +64,22 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSearchChange
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200/80 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3 shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-white font-black shadow-md shadow-amber-500/20">
+            <div className="w-10 h-10 rounded-xl bg-zinc-950 text-sky-400 border border-zinc-800 flex items-center justify-center font-black shadow-xs">
               <Wrench className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-1.5">
+              <span className="text-base font-extrabold text-zinc-950 tracking-tight flex items-center gap-1.5">
                 ProServiços
-                <span className="text-[10px] uppercase font-black px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">
+                <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200">
                   Verificado
                 </span>
               </span>
-              <p className="text-[10px] text-slate-500 font-medium hidden sm:block">
+              <p className="text-[10px] text-zinc-500 font-medium hidden sm:block">
                 Orçamentos com Validação Facial & Micropáginas
               </p>
             </div>
@@ -86,13 +88,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Search Input (Filters services & providers) */}
           <div className="flex-1 max-w-md hidden md:block">
             <div className="relative">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+              <Search className="w-4 h-4 text-zinc-400 absolute left-3 top-2.5" />
               <input
                 type="text"
                 placeholder="Buscar serviço (ex: trocar lâmpada, cortar grama, vazamento)..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/30 text-slate-800"
+                className="w-full pl-9 pr-4 py-2 rounded-xl bg-zinc-50 border border-zinc-200 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-400/40 focus:border-sky-400 text-zinc-800 transition"
               />
             </div>
           </div>
@@ -104,12 +106,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="btn-open-notifications"
                 onClick={onOpenNotifications}
-                className="relative p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-indigo-600 transition flex items-center justify-center"
+                className="relative p-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-700 hover:text-zinc-900 transition flex items-center justify-center border border-zinc-200/60"
                 title="Central de Notificações Web Push"
               >
                 <Bell className="w-4 h-4" />
                 {unreadNotificationCount > 0 && (
-                  <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-indigo-600 text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-xs animate-bounce">
+                  <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-sky-500 text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-xs">
                     {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
                   </span>
                 )}
@@ -121,10 +123,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="btn-open-finance"
                 onClick={onOpenFinanceModal}
-                className="py-1.5 px-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200 font-bold text-xs transition flex items-center gap-1.5 shadow-xs"
+                className="py-1.5 px-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-950 border border-sky-200 font-semibold text-xs transition flex items-center gap-1.5 shadow-2xs"
                 title="Cockpit Financeiro MEI & Saque PIX"
               >
-                <Wallet className="w-3.5 h-3.5 text-indigo-600" />
+                <Wallet className="w-3.5 h-3.5 text-sky-600" />
                 <span className="hidden sm:inline">Financeiro MEI</span>
               </button>
             )}
@@ -134,10 +136,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="btn-open-warranty"
                 onClick={onOpenWarrantyModal}
-                className="py-1.5 px-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-bold text-xs transition flex items-center gap-1.5 shadow-xs"
+                className="py-1.5 px-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-950 border border-sky-200 font-semibold text-xs transition flex items-center gap-1.5 shadow-2xs"
                 title="Garantia 90 Dias & Laudo Antes/Depois"
               >
-                <Award className="w-3.5 h-3.5 text-amber-600" />
+                <Award className="w-3.5 h-3.5 text-sky-600" />
                 <span className="hidden sm:inline">Garantia 90D</span>
               </button>
             )}
@@ -146,11 +148,25 @@ export const Navbar: React.FC<NavbarProps> = ({
             {onOpenVercelModal && (
               <button
                 onClick={onOpenVercelModal}
-                className="py-1.5 px-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5"
+                className="py-1.5 px-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-xs shadow-2xs transition flex items-center gap-1.5 border border-zinc-700"
                 title="Configurações de Deploy e Banco de Dados Vercel"
               >
-                <span className="font-mono text-[11px] text-amber-400">▲</span>
+                <span className="font-mono text-[11px] text-sky-300">▲</span>
                 <span className="hidden sm:inline">Vercel & BD</span>
+              </button>
+            )}
+
+            {/* Cloudflare Workers & Flutter Dual App Button */}
+            {onOpenCloudflareModal && (
+              <button
+                id="btn-open-cloudflare-modal"
+                onClick={onOpenCloudflareModal}
+                className="py-1.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-black text-xs transition flex items-center gap-1.5 shadow-sm border border-amber-400/40"
+                title="Visualizar Apps Flutter (Cliente e Prestador) & Backend Cloudflare Workers/D1"
+              >
+                <span className="text-[13px]">☁️</span>
+                <span className="hidden md:inline">2 Apps Flutter + Cloudflare</span>
+                <span className="md:hidden">Cloudflare</span>
               </button>
             )}
 
@@ -159,17 +175,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="btn-open-gemini-chat"
                 onClick={onOpenGeminiChat}
-                className="py-1.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-extrabold text-xs shadow-md shadow-amber-500/20 transition flex items-center gap-1.5"
+                className="py-1.5 px-3 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-950 border border-sky-300/80 font-bold text-xs transition flex items-center gap-1.5 shadow-2xs"
                 title="Assistente Técnico Gemini IA com Google Maps & Voz"
               >
-                <Sparkles className="w-3.5 h-3.5 text-slate-950 animate-pulse" />
+                <Sparkles className="w-3.5 h-3.5 text-sky-600" />
                 <span>IA Gemini</span>
               </button>
             )}
 
             {/* Google Sign-in with Firebase Auth */}
             {firebaseUser ? (
-              <div className="flex items-center gap-2 pl-1 border-l border-slate-200">
+              <div className="flex items-center gap-2 pl-1 border-l border-zinc-200">
                 <img
                   src={firebaseUser.photoURL || currentUser.avatar}
                   alt={firebaseUser.displayName || 'Google User'}
@@ -177,7 +193,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 />
                 <button
                   onClick={onGoogleSignOut}
-                  className="py-1 px-2 text-[11px] font-semibold text-slate-600 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 rounded-lg transition"
+                  className="py-1 px-2 text-[11px] font-semibold text-zinc-600 hover:text-rose-600 bg-zinc-100 hover:bg-rose-50 rounded-lg transition"
                   title="Sair do Google"
                 >
                   Sair
@@ -187,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="btn-google-signin"
                 onClick={onGoogleSignIn}
-                className="py-1.5 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-bold text-xs shadow-xs transition flex items-center gap-1.5"
+                className="py-1.5 px-2.5 rounded-xl bg-white hover:bg-zinc-50 text-zinc-700 border border-zinc-300 font-semibold text-xs shadow-2xs transition flex items-center gap-1.5"
                 title="Conectar com conta Google via Firebase Auth"
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
@@ -212,22 +228,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             ) : null}
 
-            {/* New Request Button */}
+            {/* New Request Button - Light Blue */}
             <button
               onClick={onOpenNewRequest}
-              className="py-2 px-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs shadow-md shadow-amber-500/20 transition flex items-center gap-1.5"
+              className="py-2 px-3.5 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs shadow-xs transition flex items-center gap-1.5"
             >
               <PlusCircle className="w-4 h-4" />
               <span className="hidden sm:inline">Pedir Orçamento</span>
             </button>
 
             {/* User Switcher Dropdown */}
-            <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+            <div className="flex items-center gap-2 pl-2 border-l border-zinc-200">
               <div className="text-right hidden sm:block">
-                <span className="text-xs font-bold text-slate-900 block truncate max-w-[120px]">
+                <span className="text-xs font-bold text-zinc-900 block truncate max-w-[120px]">
                   {currentUser.name}
                 </span>
-                <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.2 rounded">
+                <span className="text-[10px] font-semibold text-zinc-700 bg-zinc-100 border border-zinc-200/80 px-1.5 py-0.2 rounded">
                   {currentUser.role === 'client' ? 'Cliente' : `Prestador (${currentUser.category})`}
                 </span>
               </div>

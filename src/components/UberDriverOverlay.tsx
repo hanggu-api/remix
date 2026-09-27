@@ -115,22 +115,22 @@ export const UberDriverOverlay: React.FC<UberDriverOverlayProps> = ({
           {onOpenFinanceModal && (
             <button
               onClick={onOpenFinanceModal}
-              className="py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-sm"
+              className="py-2 px-3 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-950 text-xs font-semibold flex items-center gap-1.5 transition border border-sky-200"
               title="Acessar Cockpit Financeiro MEI e Saques PIX"
             >
-              <Wallet className="w-3.5 h-3.5 text-indigo-200" />
+              <Wallet className="w-3.5 h-3.5 text-sky-600" />
               <span className="hidden sm:inline">Painel MEI</span>
             </button>
           )}
 
           <div className="text-right hidden sm:block">
-            <span className="text-[10px] text-slate-400 block font-mono">Ganhos de Hoje</span>
-            <span className="text-sm font-black text-emerald-400">R$ 340,00</span>
+            <span className="text-[10px] text-zinc-400 block font-mono">Ganhos de Hoje</span>
+            <span className="text-sm font-black text-sky-300">R$ 340,00</span>
           </div>
 
           <button
             onClick={() => onOpenMicroPage(provider)}
-            className="py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition shadow-sm"
+            className="py-2 px-3 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 text-xs font-bold flex items-center gap-1.5 transition shadow-xs"
           >
             <Share2 className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Minha Micropágina Aberta</span>
@@ -140,16 +140,16 @@ export const UberDriverOverlay: React.FC<UberDriverOverlayProps> = ({
 
       {/* Floating Alert: INCOMING RIDE / SERVICE OPPORTUNITY */}
       {isOnline && activeRequest && (
-        <div className="pointer-events-auto max-w-lg mx-auto w-full bg-slate-900/98 backdrop-blur-xl text-white rounded-3xl p-5 border-2 border-amber-500 shadow-2xl space-y-4 animate-in fade-in slide-in-from-bottom-6">
+        <div className="pointer-events-auto max-w-lg mx-auto w-full bg-zinc-900/98 backdrop-blur-xl text-white rounded-3xl p-5 border border-zinc-700 shadow-2xl space-y-4 animate-in fade-in slide-in-from-bottom-6">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-amber-400 animate-ping" />
-              <span className="text-xs font-mono font-black text-amber-400 tracking-wider uppercase">
+              <span className="w-3 h-3 rounded-full bg-sky-400 animate-ping" />
+              <span className="text-xs font-mono font-black text-sky-300 tracking-wider uppercase">
                 ⚡ NOVO CHAMADO NO SEU RAIO (1.4 KM)
               </span>
             </div>
-            <span className="text-[11px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+            <span className="text-[11px] font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded border border-zinc-700">
               Expira em 45s
             </span>
           </div>
@@ -159,10 +159,10 @@ export const UberDriverOverlay: React.FC<UberDriverOverlayProps> = ({
             <h3 className="text-base font-black text-white leading-tight">
               {activeRequest.title}
             </h3>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-zinc-300">
               {activeRequest.description}
             </p>
-            <div className="text-[11px] text-slate-400 flex items-center gap-2 pt-1">
+            <div className="text-[11px] text-zinc-400 flex items-center gap-2 pt-1">
               <MapPin className="w-3.5 h-3.5 text-sky-400" />
               <span>Cliente em Pinheiros • Estimativa de deslocamento: <strong>4 min</strong></span>
             </div>
@@ -170,8 +170,8 @@ export const UberDriverOverlay: React.FC<UberDriverOverlayProps> = ({
 
           {/* AI triage insight */}
           {activeRequest.aiAnalysis && (
-            <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-300 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+            <div className="p-2.5 rounded-xl bg-zinc-800/80 border border-zinc-700 text-xs text-zinc-300 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-sky-400 shrink-0" />
               <span>
                 <strong>IA Triage:</strong> {activeRequest.aiAnalysis.requiredTools?.join(', ')} • Urgência: {activeRequest.aiAnalysis.urgency}
               </span>
@@ -182,13 +182,13 @@ export const UberDriverOverlay: React.FC<UberDriverOverlayProps> = ({
           {onOpenMaterialsModal && (
             <button
               onClick={onOpenMaterialsModal}
-              className="w-full py-2.5 px-3.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold text-xs flex items-center justify-between transition group"
+              className="w-full py-2.5 px-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-700/80 border border-zinc-700 text-zinc-200 font-semibold text-xs flex items-center justify-between transition group"
             >
               <div className="flex items-center gap-2">
-                <ShoppingBag className="w-4 h-4 text-amber-400 group-hover:scale-110 transition" />
+                <ShoppingBag className="w-4 h-4 text-sky-400 group-hover:scale-110 transition" />
                 <span>Lista de Materiais da IA & Loja no Trajeto</span>
               </div>
-              <span className="text-[10px] bg-amber-500 text-slate-950 font-black px-2 py-0.5 rounded-full shadow-xs">
+              <span className="text-[10px] bg-sky-400 text-zinc-950 font-bold px-2 py-0.5 rounded-full shadow-xs">
                 Mandar p/ Loja (-10%)
               </span>
             </button>
@@ -196,39 +196,39 @@ export const UberDriverOverlay: React.FC<UberDriverOverlayProps> = ({
 
           {/* Feedback message if quote sent */}
           {hasSentQuote ? (
-            <div className="p-3 rounded-xl bg-emerald-500 text-white font-bold text-xs text-center flex items-center justify-center gap-2">
+            <div className="p-3 rounded-xl bg-sky-500 text-zinc-950 font-bold text-xs text-center flex items-center justify-center gap-2">
               <CheckCircle2 className="w-4 h-4" />
               <span>Orçamento enviado ao cliente! Aguardando aceite...</span>
             </div>
           ) : (
             /* Fast 1-Touch Bidding buttons (like Uber fare bids) */
             <div className="space-y-2">
-              <span className="text-[11px] font-bold text-slate-400 block">
+              <span className="text-[11px] font-bold text-zinc-400 block">
                 Escolha o valor para enviar sua proposta imediata:
               </span>
               <div className="grid grid-cols-3 gap-2">
                 <button
                   onClick={() => handleSendQuickBid(90)}
-                  className="py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-extrabold text-xs transition flex flex-col items-center"
+                  className="py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-semibold text-xs transition flex flex-col items-center"
                 >
-                  <span className="text-[10px] text-slate-400">Rápido</span>
-                  <span className="text-sm text-amber-400">R$ 90</span>
+                  <span className="text-[10px] text-zinc-400">Rápido</span>
+                  <span className="text-sm font-bold text-zinc-200">R$ 90</span>
                 </button>
 
                 <button
                   onClick={() => handleSendQuickBid(110)}
-                  className="py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs transition flex flex-col items-center shadow-lg shadow-amber-500/20"
+                  className="py-3 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs transition flex flex-col items-center shadow-xs"
                 >
-                  <span className="text-[10px] text-slate-900 font-bold">Recomendado</span>
-                  <span className="text-sm">R$ 110</span>
+                  <span className="text-[10px] text-zinc-900 font-semibold">Recomendado</span>
+                  <span className="text-sm font-black">R$ 110</span>
                 </button>
 
                 <button
                   onClick={() => handleSendQuickBid(135)}
-                  className="py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-extrabold text-xs transition flex flex-col items-center"
+                  className="py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-semibold text-xs transition flex flex-col items-center"
                 >
-                  <span className="text-[10px] text-slate-400">Com Material</span>
-                  <span className="text-sm text-amber-400">R$ 135</span>
+                  <span className="text-[10px] text-zinc-400">Com Material</span>
+                  <span className="text-sm font-bold text-zinc-200">R$ 135</span>
                 </button>
               </div>
             </div>

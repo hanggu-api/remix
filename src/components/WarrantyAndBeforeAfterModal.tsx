@@ -84,39 +84,39 @@ export const WarrantyAndBeforeAfterModal: React.FC<WarrantyAndBeforeAfterModalPr
         className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-200"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-slate-900 text-white">
+        <div className="flex items-center justify-between px-6 py-4 bg-zinc-950 text-white border-b border-zinc-800">
           <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center border border-amber-400/30">
+            <div className="w-10 h-10 rounded-xl bg-zinc-900 text-sky-400 flex items-center justify-center border border-zinc-800">
               <Award className="w-6 h-6" />
             </div>
             <div>
               <h2 className="text-base font-bold flex items-center gap-2">
                 Laudo Técnico & Garantia Digital
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-400 text-slate-950">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-100 text-sky-950 border border-sky-200">
                   90 Dias CDC
                 </span>
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-zinc-400">
                 Registro fotográfico antes/depois e termo formal de conformidade
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors"
+            className="p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex border-b border-slate-200 bg-slate-50 px-6">
+        <div className="flex border-b border-zinc-200 bg-zinc-50 px-6">
           <button
             onClick={() => setActiveTab('before_after')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-all ${
               activeTab === 'before_after'
-                ? 'border-indigo-600 text-indigo-700 bg-white'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
+                ? 'border-sky-500 text-sky-900 bg-white'
+                : 'border-transparent text-zinc-500 hover:text-zinc-800'
             }`}
           >
             <Split className="w-4 h-4" />
@@ -126,8 +126,8 @@ export const WarrantyAndBeforeAfterModal: React.FC<WarrantyAndBeforeAfterModalPr
             onClick={() => setActiveTab('certificate')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-all ${
               activeTab === 'certificate'
-                ? 'border-amber-500 text-amber-800 bg-white'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
+                ? 'border-sky-500 text-sky-900 bg-white'
+                : 'border-transparent text-zinc-500 hover:text-zinc-800'
             }`}
           >
             <Award className="w-4 h-4" />
@@ -140,9 +140,9 @@ export const WarrantyAndBeforeAfterModal: React.FC<WarrantyAndBeforeAfterModalPr
           {activeTab === 'before_after' ? (
             <div className="space-y-5">
               {/* Instructions and Controls */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100">
-                <div className="flex items-center gap-2 text-xs text-indigo-950 font-medium">
-                  <ShieldCheck className="w-4 h-4 text-indigo-600 shrink-0" />
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-zinc-50 p-3.5 rounded-xl border border-zinc-200">
+                <div className="flex items-center gap-2 text-xs text-zinc-800 font-medium">
+                  <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0" />
                   <span>
                     Fotos geolocalizadas registradas no início e ao término da intervenção.
                   </span>
@@ -152,8 +152,8 @@ export const WarrantyAndBeforeAfterModal: React.FC<WarrantyAndBeforeAfterModalPr
                     onClick={() => setViewMode('side_by_side')}
                     className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition ${
                       viewMode === 'side_by_side'
-                        ? 'bg-indigo-600 text-white shadow-xs'
-                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                        ? 'bg-sky-400 text-zinc-950 shadow-xs font-bold'
+                        : 'bg-white text-zinc-700 border border-zinc-200 hover:bg-zinc-100'
                     }`}
                   >
                     Lado a Lado
@@ -162,8 +162,8 @@ export const WarrantyAndBeforeAfterModal: React.FC<WarrantyAndBeforeAfterModalPr
                     onClick={() => setViewMode('toggle')}
                     className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition ${
                       viewMode === 'toggle'
-                        ? 'bg-indigo-600 text-white shadow-xs'
-                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                        ? 'bg-sky-400 text-zinc-950 shadow-xs font-bold'
+                        : 'bg-white text-zinc-700 border border-zinc-200 hover:bg-zinc-100'
                     }`}
                   >
                     Alternador
@@ -358,14 +358,14 @@ export const WarrantyAndBeforeAfterModal: React.FC<WarrantyAndBeforeAfterModalPr
               <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={handleShareWhatsApp}
-                  className="py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-xs"
+                  className="py-2.5 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-200 font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-xs"
                 >
-                  <Share2 className="w-4 h-4" />
+                  <Share2 className="w-4 h-4 text-emerald-600" />
                   Enviar via WhatsApp
                 </button>
                 <button
                   onClick={handlePrintCertificate}
-                  className="py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-xs"
+                  className="py-2.5 px-4 bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-xs"
                 >
                   <Printer className="w-4 h-4" />
                   Imprimir / Salvar PDF

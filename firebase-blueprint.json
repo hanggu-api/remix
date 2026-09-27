@@ -64,11 +64,19 @@
     },
     "/requests/{requestId}": {
       "schema": "ServiceRequest",
-      "description": "Pedidos de serviços registrados"
+      "description": "Pedidos de serviços registrados pelos clientes e ouvidos no radar dos prestadores"
+    },
+    "/requests/{requestId}/quotes/{quoteId}": {
+      "schema": "ProviderQuote",
+      "description": "Orçamentos enviados pelos prestadores em tempo real"
     },
     "/requests/{requestId}/messages/{messageId}": {
       "schema": "ChatMessage",
       "description": "Mensagens de negociação e atendimento"
+    },
+    "/escrow_transactions/{transactionId}": {
+      "schema": "EscrowPayment",
+      "description": "Transações de pagamento seguro retidas em custódia até conclusão"
     }
   }
 }

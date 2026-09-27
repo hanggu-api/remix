@@ -225,13 +225,13 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
       <div className="p-4 sm:p-6 overflow-y-auto max-h-[75vh] space-y-4">
         {/* STEP 1: IDLE - Select Service like Uber */}
         {serviceStep === 'idle' && (
-          <div className="space-y-4">
+          <div className="space-y-5">
             {/* Category Ride Cards (UberX Style) */}
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-2">
+              <label className="text-xs font-bold text-slate-700 block mb-2.5">
                 Selecione a categoria do chamado:
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                 {UBER_SERVICES.map((srv) => {
                   const Icon = srv.icon;
                   const isSelected = selectedCategory === srv.id;
@@ -239,29 +239,32 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                     <div
                       key={srv.id}
                       onClick={() => onSelectCategory(srv.id)}
-                      className={`p-3 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
+                      className={`p-4 sm:p-5 rounded-2xl sm:rounded-3xl border cursor-pointer transition-all flex flex-col justify-between min-h-[145px] sm:min-h-[160px] ${
                         isSelected
-                          ? 'border-2 border-slate-900 bg-slate-900 text-white shadow-lg shadow-slate-900/10'
-                          : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 text-slate-800'
+                          ? 'border-2 border-zinc-950 bg-zinc-950 text-white shadow-md'
+                          : 'border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-xs text-zinc-800'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div
-                          className={`w-8 h-8 rounded-xl flex items-center justify-center ${
-                            isSelected ? 'bg-amber-400 text-slate-950 font-bold' : 'bg-white shadow-xs text-slate-700'
+                          className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                            isSelected ? 'bg-sky-400 text-zinc-950 font-bold' : 'bg-zinc-100 text-zinc-800 border border-zinc-200/80'
                           }`}
                         >
-                          <Icon className="w-4 h-4" />
+                          <Icon className="w-5 h-5" />
                         </div>
-                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                          isSelected ? 'bg-slate-800 text-amber-300' : 'bg-slate-200 text-slate-700'
+                        <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md ${
+                          isSelected ? 'bg-zinc-800 text-sky-300' : 'bg-zinc-100 text-zinc-700 border border-zinc-200'
                         }`}>
                           {srv.eta}
                         </span>
                       </div>
-                      <div className="mt-2">
-                        <div className="text-xs font-bold leading-tight">{srv.name}</div>
-                        <div className={`text-[10px] truncate mt-0.5 ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
+                      <div className="mt-3">
+                        <div className="text-sm font-bold leading-tight">{srv.name}</div>
+                        <div className={`text-xs mt-1 leading-snug ${isSelected ? 'text-zinc-300' : 'text-zinc-500'}`}>
+                          {srv.sub}
+                        </div>
+                        <div className={`text-xs font-semibold mt-2 pt-2 border-t ${isSelected ? 'border-zinc-800 text-sky-300' : 'border-zinc-100 text-zinc-700'}`}>
                           {srv.basePrice}
                         </div>
                       </div>
@@ -272,9 +275,9 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
             </div>
 
             {/* Quick Request Problem Input */}
-            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-3">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-zinc-200 shadow-xs space-y-4">
               <div>
-                <label className="text-xs font-bold text-slate-800 block mb-1">
+                <label className="text-xs font-bold text-zinc-800 block mb-1.5">
                   O que precisa ser feito?
                 </label>
                 <input
@@ -282,30 +285,30 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                   value={quickTitle}
                   onChange={(e) => setQuickTitle(e.target.value)}
                   placeholder="Ex: Trocar 4 lâmpadas e tomada da sala"
-                  className="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-200 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-3 bg-zinc-50 focus:bg-white rounded-xl border border-zinc-200 text-sm font-semibold text-zinc-900 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400 transition"
                 />
               </div>
 
               {/* Audio and Photo One-Touch Controls */}
-              <div className="flex items-center justify-between gap-3 pt-1">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+                <div className="flex flex-wrap items-center gap-2.5">
                   <button
                     type="button"
                     onClick={toggleVoiceRecording}
-                    className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${
+                    className={`py-2.5 px-3.5 rounded-xl text-xs font-bold flex items-center gap-2 transition ${
                       isRecording
-                        ? 'bg-red-600 text-white animate-pulse'
+                        ? 'bg-rose-600 text-white animate-pulse'
                         : isTranscribing
-                        ? 'bg-amber-500 text-slate-950 font-extrabold'
+                        ? 'bg-sky-100 text-sky-950 font-bold border border-sky-300'
                         : hasAudio
-                        ? 'bg-amber-100 text-amber-900 border border-amber-300'
-                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
+                        ? 'bg-sky-50 text-sky-900 border border-sky-200'
+                        : 'bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-100'
                     }`}
                   >
                     {isTranscribing ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <Loader2 className="w-4 h-4 animate-spin text-sky-600" />
                     ) : (
-                      <Mic className="w-3.5 h-3.5" />
+                      <Mic className="w-4 h-4" />
                     )}
                     <span>
                       {isRecording
@@ -318,8 +321,8 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                     </span>
                   </button>
 
-                  <label className="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center gap-1.5 cursor-pointer transition">
-                    <Camera className="w-3.5 h-3.5 text-blue-600" />
+                  <label className="py-2.5 px-3.5 rounded-xl bg-white border border-zinc-200 hover:bg-zinc-100 text-zinc-700 text-xs font-bold flex items-center gap-2 cursor-pointer transition">
+                    <Camera className="w-4 h-4 text-zinc-600" />
                     <span>{photoPreview ? 'Foto do local anexada ✓' : 'Tirar Foto'}</span>
                     <input
                       type="file"
@@ -337,45 +340,45 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                   </label>
                 </div>
 
-                <div className="text-[11px] text-slate-500 font-medium hidden sm:block">
-                  📍 Raio de busca: <strong>5 km</strong>
+                <div className="text-xs text-zinc-500 font-medium">
+                  📍 Raio de busca: <strong className="text-zinc-800">5 km</strong>
                 </div>
               </div>
             </div>
 
-            {/* Uber Big CTA Action */}
+            {/* Uber Big CTA Action - Light Blue Button */}
             <button
               onClick={handleStartSearch}
-              className="w-full py-4 rounded-2xl bg-slate-950 hover:bg-slate-900 text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2 transition active:scale-98"
+              className="w-full py-4 rounded-xl sm:rounded-2xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-sm sm:text-base shadow-xs flex items-center justify-center gap-2 transition active:scale-98"
             >
-              <Zap className="w-4 h-4 text-amber-400" />
+              <Zap className="w-4 h-4 fill-zinc-950" />
               <span>Chamar Orçamentos Próximos Agora</span>
-              <ArrowRight className="w-4 h-4 text-slate-400" />
+              <ArrowRight className="w-4 h-4 text-zinc-900" />
             </button>
           </div>
         )}
 
         {/* STEP 2: RADAR SEARCHING - Pulsing search like Uber */}
         {serviceStep === 'radar' && (
-          <div className="py-6 text-center space-y-4">
-            <div className="relative w-20 h-20 mx-auto flex items-center justify-center">
+          <div className="py-8 text-center space-y-5">
+            <div className="relative w-24 h-24 mx-auto flex items-center justify-center">
               <div className="absolute inset-0 rounded-full border-4 border-sky-400/30 animate-ping" />
-              <div className="w-16 h-16 rounded-full bg-slate-900 text-amber-400 flex items-center justify-center shadow-xl">
-                <Zap className="w-8 h-8 animate-bounce" />
+              <div className="w-20 h-20 rounded-full bg-zinc-950 text-sky-400 flex items-center justify-center shadow-lg border border-zinc-800">
+                <Zap className="w-10 h-10 animate-bounce" />
               </div>
             </div>
 
             <div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h3 className="text-lg font-black text-zinc-950">
                 Disparando pedido para os prestadores no mapa...
               </h3>
-              <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1">
-                A IA analisou seu áudio/foto e encontrou <strong>3 eletricistas credenciados</strong> a menos de 10 minutos da sua localização.
+              <p className="text-xs sm:text-sm text-zinc-500 max-w-md mx-auto mt-1.5 leading-relaxed">
+                A IA analisou seu pedido e encontrou <strong>profissionais credenciados</strong> no seu raio de atendimento.
               </p>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 text-xs font-bold">
+              <ShieldCheck className="w-4 h-4 text-sky-600" />
               <span>Profissionais checados com biometria facial e CNH/RG</span>
             </div>
           </div>
@@ -383,70 +386,81 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
 
         {/* STEP 3: QUOTES COMPARISON - Uber Rides Card Deck */}
         {serviceStep === 'quotes' && (
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="flex items-center justify-between pb-1">
               <div>
-                <h3 className="text-sm font-extrabold text-slate-900">
-                  Propostas Recebidas ({quotes.length} opções disponíveis)
+                <h3 className="text-base sm:text-lg font-black text-zinc-950">
+                  Propostas Recebidas ({quotes.length} {quotes.length === 1 ? 'opção disponível' : 'opções disponíveis'})
                 </h3>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs sm:text-sm text-zinc-500">
                   Escolha pelo menor preço, menor distância ou melhor avaliação
                 </p>
               </div>
-              <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-sky-900 border border-sky-200 shrink-0">
                 ⚡ Resposta Imediata
               </span>
             </div>
 
-            {/* AI Materials Recommendation Banner */}
+            {/* AI Materials Recommendation Card */}
             {onOpenMaterialsModal && (
-              <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-50 to-amber-100/50 border border-amber-300/80 flex items-center justify-between gap-3 shadow-xs">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-xs shrink-0">
-                    <ShoppingBag className="w-5 h-5" />
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-zinc-200 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+                <div className="flex items-start sm:items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-zinc-950 text-sky-400 border border-zinc-800 flex items-center justify-center font-bold shadow-xs shrink-0">
+                    <ShoppingBag className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-slate-950 flex items-center gap-2">
-                      <span>Lista de Materiais IA Gerada</span>
-                      <span className="text-[10px] bg-emerald-600 text-white font-extrabold px-1.5 py-0.5 rounded-full">
-                        10% OFF Parceiro
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm sm:text-base font-extrabold text-zinc-950">
+                        Lista de Materiais IA Gerada
+                      </span>
+                      <span className="text-xs bg-sky-100 text-sky-950 font-bold px-2.5 py-0.5 rounded-full border border-sky-300">
+                        10% OFF Parceiro Credenciado
                       </span>
                     </div>
-                    <p className="text-[11px] text-slate-600 mt-0.5">
-                      O prestador pode retirar os materiais no balcão da <strong>Elétrica Pinheiros</strong> a caminho!
+                    <p className="text-xs sm:text-sm text-zinc-600 mt-1 leading-relaxed">
+                      O prestador pode retirar os materiais no balcão da <strong>Elétrica Pinheiros</strong> a caminho ou receber direto no local!
                     </p>
+                    <div className="flex items-center gap-2 text-[11px] text-zinc-500 mt-1">
+                      <span>✓ Orçamento otimizado</span>
+                      <span>•</span>
+                      <span>✓ Sem desperdício de insumos</span>
+                    </div>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={onOpenMaterialsModal}
-                  className="py-1.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-400 font-extrabold text-xs whitespace-nowrap transition shadow-sm shrink-0"
+                  className="py-2.5 sm:py-3 px-5 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-950 font-bold text-xs sm:text-sm whitespace-nowrap transition border border-sky-300 shadow-2xs shrink-0 flex items-center justify-center gap-2"
                 >
-                  Ver Materiais
+                  <ShoppingBag className="w-4 h-4 text-sky-700" />
+                  <span>Ver Materiais</span>
                 </button>
               </div>
             )}
 
-            {/* Escrow Custody Protection Assurance Banner */}
-            <div className="p-3 rounded-2xl bg-emerald-50/80 border border-emerald-200 flex items-center justify-between gap-3 text-xs text-emerald-950 shadow-xs">
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                  <Lock className="w-4 h-4" />
+            {/* Escrow Custody Protection Assurance Card */}
+            <div className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-white border border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 shadow-xs">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-zinc-950 text-sky-400 flex items-center justify-center shrink-0 border border-zinc-800 shadow-xs">
+                  <Lock className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="font-black text-emerald-900 block">Pagamento Seguro com Custódia ProServiços</span>
-                  <p className="text-[11px] text-emerald-700">
-                    Seu PIX fica retido com segurança e só é liberado para o prestador após conferir o resultado.
+                  <span className="font-extrabold text-sm sm:text-base text-zinc-950 block">
+                    Pagamento Seguro com Custódia ProServiços
+                  </span>
+                  <p className="text-xs sm:text-sm text-zinc-600 mt-0.5 leading-relaxed">
+                    Seu PIX ou cartão fica retido com segurança em conta garantia e só é liberado para o prestador após a sua conferência e aprovação.
                   </p>
                 </div>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 bg-white px-2 py-1 rounded-lg border border-emerald-300 shrink-0">
-                Garantia 90D
+              <span className="text-xs font-bold uppercase tracking-wider text-zinc-800 bg-zinc-100 px-3 py-1.5 rounded-xl border border-zinc-200 shrink-0 self-start sm:self-auto flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-sky-600" />
+                Garantia 90 Dias
               </span>
             </div>
 
-            {/* Uber Options Vertical Cards */}
-            <div className="space-y-2.5">
+            {/* Uber Options Vertical Cards - Expanded Height and Content */}
+            <div className="space-y-4">
               {quotes.map((quote, idx) => {
                 const isSelected = activeRequest?.selectedQuoteId === quote.id;
                 const isBestPrice = quote.price === Math.min(...quotes.map((q) => q.price));
@@ -456,78 +470,103 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                   quote.providerRating >= 4.9 ? 'Pro Diamante ★' : quote.providerRating >= 4.7 ? 'Pro Ouro' : 'Pro Prata';
                 const tierColor =
                   quote.providerRating >= 4.9
-                    ? 'bg-gradient-to-r from-sky-100 to-indigo-100 text-indigo-900 border-indigo-300'
+                    ? 'bg-sky-100 text-sky-950 border-sky-300'
                     : quote.providerRating >= 4.7
-                    ? 'bg-amber-100 text-amber-900 border-amber-300'
-                    : 'bg-slate-100 text-slate-800 border-slate-300';
+                    ? 'bg-sky-50 text-sky-900 border-sky-200'
+                    : 'bg-zinc-100 text-zinc-800 border-zinc-300';
 
                 return (
                   <div
                     key={quote.id}
-                    className={`p-4 rounded-2xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                    className={`p-5 sm:p-6 rounded-2xl sm:rounded-3xl border transition-all flex flex-col justify-between gap-4.5 ${
                       isSelected
-                        ? 'border-2 border-emerald-500 bg-emerald-50/40 shadow-md ring-2 ring-emerald-500/10'
-                        : 'border-slate-200 bg-white hover:border-slate-400 shadow-xs'
+                        ? 'border-2 border-sky-400 bg-sky-50/20 shadow-md ring-2 ring-sky-400/10'
+                        : 'border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-xs'
                     }`}
                   >
-                    {/* Left: Provider info + Uber ride look */}
-                    <div className="flex items-center gap-3.5">
-                      <div className="relative">
-                        <img
-                          src={quote.providerAvatar}
-                          alt={quote.providerName}
-                          className="w-14 h-14 rounded-2xl object-cover border border-slate-200"
-                        />
-                        {quote.providerFacialVerified && (
-                          <span className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-0.5 shadow">
-                            <CheckCircle2 className="w-3.5 h-3.5" />
-                          </span>
-                        )}
-                      </div>
-
-                      <div>
-                        <div className="flex flex-wrap items-center gap-1.5">
-                          <h4 className="text-sm font-extrabold text-slate-900">
-                            {quote.providerName}
-                          </h4>
-                          <span className={`text-[10px] font-black px-2 py-0.5 rounded-full border shadow-2xs ${tierColor}`}>
-                            {tierName}
-                          </span>
-                          {isBestPrice && (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-slate-950 shadow-xs">
-                              Menor Preço
+                    {/* Top Row: Provider identity, Rating, Badges and Price */}
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                      <div className="flex items-start gap-4">
+                        <div className="relative shrink-0">
+                          <img
+                            src={quote.providerAvatar}
+                            alt={quote.providerName}
+                            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-zinc-100 shadow-xs"
+                          />
+                          {quote.providerFacialVerified && (
+                            <span className="absolute -bottom-1 -right-1 bg-sky-500 text-white rounded-full p-1 shadow-xs" title="Biometria Facial Confirmada">
+                              <CheckCircle2 className="w-3.5 h-3.5" />
                             </span>
                           )}
                         </div>
 
-                        <div className="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
-                          <span className="flex items-center text-amber-500 font-bold">
-                            <Star className="w-3.5 h-3.5 fill-current mr-0.5" />
-                            {quote.providerRating}
-                          </span>
-                          <span>•</span>
-                          <span>{quote.providerJobsCount} chamados</span>
-                          <span>•</span>
-                          <span className="font-semibold text-slate-700">Chegada: {quote.scheduledTime}</span>
-                        </div>
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h4 className="text-base sm:text-lg font-black text-zinc-950">
+                              {quote.providerName}
+                            </h4>
+                            <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border shadow-2xs ${tierColor}`}>
+                              {tierName}
+                            </span>
+                            {isBestPrice && (
+                              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-950 border border-sky-200 shadow-2xs">
+                                Menor Preço
+                              </span>
+                            )}
+                          </div>
 
-                        <p className="text-[11px] text-slate-600 line-clamp-1 italic mt-1">
-                          "{quote.message}"
-                        </p>
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-zinc-500 mt-1.5">
+                            <span className="flex items-center text-amber-500 font-bold bg-amber-50/60 px-2 py-0.5 rounded-md border border-amber-200/60">
+                              <Star className="w-4 h-4 fill-current mr-1" />
+                              {quote.providerRating}
+                            </span>
+                            <span>•</span>
+                            <span className="font-medium text-zinc-700">{quote.providerJobsCount} atendimentos realizados</span>
+                            <span>•</span>
+                            <span className="font-semibold text-zinc-900 bg-zinc-100 px-2 py-0.5 rounded-md">
+                              Chegada: ~{quote.scheduledTime}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Top Right Price */}
+                      <div className="sm:text-right shrink-0">
+                        <span className="text-xs text-zinc-400 block font-medium">Mão de obra com custódia:</span>
+                        <span className="text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight">
+                          R$ {quote.price.toFixed(2)}
+                        </span>
+                        <span className="text-[11px] text-zinc-500 block mt-0.5">Sem cobranças surpresa</span>
                       </div>
                     </div>
 
-                    {/* Right: Price & Confirm Button */}
-                    <div className="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100">
-                      <div className="text-left sm:text-right">
-                        <span className="text-[10px] text-slate-400 block font-medium">Mão de obra:</span>
-                        <span className="text-lg font-black text-slate-900">
-                          R$ {quote.price.toFixed(2)}
-                        </span>
+                    {/* Middle: Rich Content Box with Message & Guarantee */}
+                    <div className="bg-zinc-50 border border-zinc-100 rounded-xl sm:rounded-2xl p-4 space-y-2">
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
+                        <div className="text-sky-600 font-serif text-lg leading-none shrink-0 select-none">“</div>
+                        <p className="leading-relaxed italic text-zinc-800">
+                          {quote.message}
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-zinc-200/60 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500">
+                        <div className="flex items-center gap-1.5 text-zinc-700 font-medium">
+                          <ShieldCheck className="w-4 h-4 text-sky-600" />
+                          <span>Garantia de 90 dias com emissão de Laudo Técnico ProServiços</span>
+                        </div>
+                        <span className="text-zinc-500">Duração estimada: {quote.estimatedDuration || '45 min'}</span>
+                      </div>
+                    </div>
+
+                    {/* Bottom Actions Row */}
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 border-t border-zinc-100">
+                      <div className="flex items-center gap-2 text-xs text-zinc-500">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Pronto para iniciar o deslocamento agora</span>
                       </div>
 
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-2">
                         <button
+                          type="button"
                           onClick={() => {
                             const prov = {
                               id: quote.providerId,
@@ -544,18 +583,20 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                             };
                             onOpenMicroPage(prov);
                           }}
-                          className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition"
+                          className="py-2.5 sm:py-3 px-4 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs sm:text-sm font-bold transition border border-zinc-200 flex items-center justify-center gap-2"
                           title="Ver Micropágina Aberta"
                         >
                           <ExternalLink className="w-4 h-4" />
+                          <span>Ver Perfil & Avaliações</span>
                         </button>
 
                         <button
+                          type="button"
                           onClick={() => onAcceptQuote(quote)}
-                          className="py-2.5 px-4 rounded-xl bg-slate-950 hover:bg-slate-900 text-white font-extrabold text-xs shadow-md transition flex items-center gap-1.5"
+                          className="py-3 sm:py-3.5 px-6 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2"
                         >
-                          <Zap className="w-3.5 h-3.5 text-amber-400" />
-                          <span>Chamar {quote.providerName.split(' ')[0]}</span>
+                          <Zap className="w-4 h-4 fill-zinc-950" />
+                          <span>Contratar {quote.providerName.split(' ')[0]} Agora</span>
                         </button>
                       </div>
                     </div>
@@ -570,66 +611,66 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
         {(serviceStep === 'en_route' || serviceStep === 'in_progress' || serviceStep === 'completed') && (
           <div className="space-y-4">
             {/* Driver Live Header */}
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-950 text-white">
-              <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-slate-950 text-white shadow-sm">
+              <div className="flex items-center gap-4">
                 <div className="relative">
                   <img
                     src={selectedProvider?.avatar || 'https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=150&auto=format&fit=crop&q=80'}
                     alt="Driver"
-                    className="w-12 h-12 rounded-xl object-cover border-2 border-white/20"
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-white/20 shadow-xs"
                   />
-                  <span className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-0.5">
-                    <CheckCircle2 className="w-3 h-3" />
+                  <span className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-1 shadow-xs">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
                   </span>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2">
-                    <h4 className="text-sm font-extrabold">{selectedProvider?.name || 'Carlos Mendes'}</h4>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-400 text-slate-950">
+                    <h4 className="text-base sm:text-lg font-black text-white">{selectedProvider?.name || 'Carlos Mendes'}</h4>
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-sky-100 text-sky-950 border border-sky-200">
                       {selectedProvider?.category || 'Eletricista'}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-slate-300 mt-0.5">
-                    <span>⭐ {selectedProvider?.rating || 4.9}</span>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-300 mt-1">
+                    <span className="text-amber-400">⭐ {selectedProvider?.rating || 4.9}</span>
                     <span>•</span>
-                    <span>Valor Fechado: <strong>R$ {selectedQuote?.price.toFixed(2) || '110.00'}</strong></span>
+                    <span>Valor Fechado: <strong className="text-white">R$ {selectedQuote?.price.toFixed(2) || '110.00'}</strong></span>
                   </div>
                 </div>
               </div>
 
               {/* Uber PIN Code for Security */}
-              <div className="text-right bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl">
-                <span className="text-[10px] text-slate-400 uppercase font-mono block">PIN de Segurança</span>
-                <span className="text-base font-mono font-black text-amber-400 tracking-widest">7412</span>
+              <div className="text-right bg-zinc-900 border border-zinc-800 px-3.5 py-2 rounded-xl">
+                <span className="text-[10px] text-zinc-400 uppercase font-mono block">PIN de Segurança</span>
+                <span className="text-lg font-mono font-black text-sky-300 tracking-widest">7412</span>
               </div>
             </div>
 
             {/* ETA & Distance Metric Bar */}
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span className="text-[10px] text-slate-500 block">Tempo Estimado de Chegada:</span>
-                <strong className="text-base font-black text-slate-900">
+            <div className="grid grid-cols-2 gap-3.5 text-xs">
+              <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-200">
+                <span className="text-xs text-zinc-500 block font-medium">Tempo Estimado de Chegada:</span>
+                <strong className="text-lg font-black text-zinc-950 mt-0.5 block">
                   {serviceStep === 'completed' ? 'Finalizado' : providerEtaMinutes > 0 ? `${providerEtaMinutes} min` : 'No Local!'}
                 </strong>
               </div>
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span className="text-[10px] text-slate-500 block">Distância do Prestador:</span>
-                <strong className="text-base font-black text-slate-900">
+              <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-200">
+                <span className="text-xs text-zinc-500 block font-medium">Distância do Prestador:</span>
+                <strong className="text-lg font-black text-zinc-950 mt-0.5 block">
                   {serviceStep === 'completed' ? '0 km' : providerDistanceKm > 0 ? `${providerDistanceKm} km` : 'Chegou'}
                 </strong>
               </div>
             </div>
 
             {/* Custody Escrow Status & Warranty Digital Certificate Action */}
-            <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center shrink-0 shadow-xs">
-                  <Award className="w-4 h-4" />
+            <div className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-white border border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 text-xs shadow-xs">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-zinc-950 text-sky-400 border border-zinc-800 flex items-center justify-center shrink-0 shadow-xs">
+                  <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="font-bold text-amber-950 block">Garantia ProServiços 90 Dias & Laudo Técnico</span>
-                  <p className="text-[11px] text-amber-800">
+                  <span className="font-extrabold text-sm sm:text-base text-zinc-900 block">Garantia ProServiços 90 Dias & Laudo Técnico</span>
+                  <p className="text-xs sm:text-sm text-zinc-600 mt-0.5">
                     Fotos antes/depois registradas e termo de garantia digital oficial.
                   </p>
                 </div>
@@ -638,9 +679,9 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                 <button
                   type="button"
                   onClick={onOpenWarrantyModal}
-                  className="py-1.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs flex items-center gap-1.5 self-start sm:self-auto transition shadow-xs shrink-0"
+                  className="py-2.5 px-4 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-950 font-bold text-xs sm:text-sm flex items-center gap-2 self-start sm:self-auto transition border border-sky-300 shadow-2xs shrink-0"
                 >
-                  <Award className="w-3.5 h-3.5" />
+                  <Award className="w-4 h-4 text-sky-700" />
                   <span>Ver Laudo & Garantia</span>
                 </button>
               )}
@@ -650,20 +691,20 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
             {serviceStep === 'completed' && (
               <div
                 id="post-service-feedback-banner"
-                className="p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border border-amber-300/80 shadow-xs space-y-2.5"
+                className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-zinc-200 shadow-xs space-y-3"
               >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shrink-0 shadow-xs">
-                      <Star className="w-4 h-4 fill-slate-950" />
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 rounded-xl bg-zinc-950 text-sky-400 border border-zinc-800 flex items-center justify-center font-bold shrink-0 shadow-xs">
+                      <Star className="w-5 h-5 fill-sky-400" />
                     </div>
                     <div>
-                      <span className="text-xs font-extrabold text-slate-900 block">
+                      <span className="text-sm sm:text-base font-extrabold text-zinc-900 block">
                         {serviceFeedback
                           ? 'Sua Avaliação do Atendimento'
                           : `Avaliar Atendimento de ${selectedProvider?.name || 'Profissional'}`}
                       </span>
-                      <p className="text-[11px] text-slate-600">
+                      <p className="text-xs sm:text-sm text-zinc-600 mt-0.5">
                         {serviceFeedback
                           ? 'Avaliação registrada com sucesso no perfil público do prestador.'
                           : 'Dê sua nota de 1 a 5 estrelas e adicione um depoimento sobre o serviço.'}
@@ -676,16 +717,16 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                       type="button"
                       id="open-feedback-sheet-btn"
                       onClick={onOpenFeedbackModal}
-                      className="py-1.5 px-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-xs flex items-center gap-1.5 transition shadow-xs shrink-0"
+                      className="py-2.5 px-4 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs sm:text-sm flex items-center gap-2 transition shadow-xs shrink-0"
                     >
-                      <Star className="w-3.5 h-3.5 fill-slate-950" />
+                      <Star className="w-3.5 h-3.5 fill-zinc-950" />
                       <span>{serviceFeedback ? 'Ver / Editar' : 'Avaliar Agora'}</span>
                     </button>
                   )}
                 </div>
 
                 {serviceFeedback && (
-                  <div className="pt-2 border-t border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                  <div className="pt-2 border-t border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                     <div className="flex items-center gap-2">
                       <div className="flex text-amber-500">
                         {[1, 2, 3, 4, 5].map((s) => (
@@ -694,13 +735,13 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                             className={`w-3.5 h-3.5 ${
                               s <= serviceFeedback.rating
                                 ? 'fill-amber-400 text-amber-400'
-                                : 'text-slate-200'
+                                : 'text-zinc-200'
                             }`}
                           />
                         ))}
                       </div>
-                      <span className="font-extrabold text-slate-900">{serviceFeedback.rating}.0</span>
-                      <span className="text-slate-600 italic truncate max-w-[200px] sm:max-w-sm">
+                      <span className="font-extrabold text-zinc-900">{serviceFeedback.rating}.0</span>
+                      <span className="text-zinc-600 italic truncate max-w-[200px] sm:max-w-sm">
                         "{serviceFeedback.comment}"
                       </span>
                     </div>
@@ -709,7 +750,7 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                         {serviceFeedback.tags.slice(0, 2).map((t, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-0.5 rounded-md bg-white border border-amber-200 text-amber-900 text-[10px] font-semibold"
+                            className="px-2 py-0.5 rounded-md bg-white border border-zinc-200 text-zinc-800 text-[10px] font-semibold"
                           >
                             {t}
                           </span>
@@ -725,9 +766,9 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
               <button
                 onClick={onOpenChat}
-                className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-2 transition"
+                className="py-3 px-4 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-semibold text-xs flex items-center justify-center gap-2 transition border border-zinc-200/80"
               >
-                <MessageSquare className="w-4 h-4 text-amber-600" />
+                <MessageSquare className="w-4 h-4 text-sky-600" />
                 <span>Abrir Chat com Prestador</span>
               </button>
 
@@ -735,7 +776,7 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                 href="https://wa.me/5511991238844"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center gap-2 transition"
+                className="py-3 px-4 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-semibold text-xs flex items-center justify-center gap-2 transition border border-zinc-200/80"
               >
                 <Phone className="w-4 h-4 text-emerald-600" />
                 <span>Ligar / WhatsApp</span>
@@ -744,7 +785,7 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
               {serviceStep === 'en_route' && (
                 <button
                   onClick={onSimulateArrival}
-                  className="py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition shadow-md shadow-blue-600/20"
+                  className="py-3 px-4 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 transition shadow-xs"
                 >
                   <Car className="w-4 h-4" />
                   <span>Simular Carro Andando (GPS)</span>
@@ -754,9 +795,9 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
               {serviceStep === 'in_progress' && (
                 <button
                   onClick={onFinishService}
-                  className="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition shadow-md shadow-emerald-600/20"
+                  className="py-3 px-4 rounded-xl bg-zinc-950 hover:bg-zinc-900 text-white font-bold text-xs flex items-center justify-center gap-2 transition shadow-xs"
                 >
-                  <CheckCircle2 className="w-4 h-4" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>Concluir Serviço</span>
                 </button>
               )}
@@ -766,9 +807,9 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
                   type="button"
                   id="action-eval-provider-btn"
                   onClick={onOpenFeedbackModal}
-                  className="py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition shadow-md shadow-amber-500/20"
+                  className="py-3 px-4 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 transition shadow-xs"
                 >
-                  <Star className="w-4 h-4 fill-slate-950" />
+                  <Star className="w-4 h-4 fill-zinc-950" />
                   <span>{serviceFeedback ? 'Ver Avaliação' : 'Avaliar Prestador'}</span>
                 </button>
               )}
@@ -776,7 +817,7 @@ export const UberBottomSheet: React.FC<UberBottomSheetProps> = ({
               {serviceStep === 'completed' && (
                 <button
                   onClick={onResetToNewService}
-                  className="py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-2 transition shadow-md"
+                  className="py-3 px-4 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold text-xs flex items-center justify-center gap-2 transition border border-zinc-200"
                 >
                   <RotateCcw className="w-4 h-4" />
                   <span>Fazer Novo Chamado</span>

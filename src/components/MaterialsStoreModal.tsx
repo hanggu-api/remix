@@ -119,11 +119,11 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl text-white overflow-hidden my-4">
+      <div className="relative w-full max-w-2xl bg-zinc-950 border border-zinc-800 rounded-3xl shadow-2xl text-white overflow-hidden my-4">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-800 bg-slate-950/70">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-zinc-800 bg-zinc-950">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-zinc-900 border border-zinc-800 text-sky-400 flex items-center justify-center shrink-0">
               <ShoppingBag className="w-5 h-5" />
             </div>
             <div>
@@ -131,18 +131,18 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
                 <h3 className="text-base font-extrabold text-white">
                   Lista Inteligente de Materiais & Loja Parceira
                 </h3>
-                <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold flex items-center gap-1">
+                <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 text-[10px] font-bold flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5" /> IA Integrada
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-zinc-400">
                 A IA lista os insumos e envia direto para separação no balcão da loja parceira
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-1.5 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -153,50 +153,50 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
           {/* Partner Store Selector */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-bold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider">
-                <Store className="w-3.5 h-3.5 text-amber-400" />
+              <label className="text-xs font-bold text-zinc-300 flex items-center gap-1.5 uppercase tracking-wider">
+                <Store className="w-3.5 h-3.5 text-sky-400" />
                 1. Selecione a Loja Parceira no Trajeto:
               </label>
-              <span className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
+              <span className="text-[11px] text-sky-400 font-semibold flex items-center gap-1">
                 <Percent className="w-3 h-3" /> Desconto Exclusivo ProServiços
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {PARTNER_STORES.map((store) => {
                 const isSelected = store.id === selectedStoreId;
                 return (
                   <div
                     key={store.id}
                     onClick={() => setSelectedStoreId(store.id)}
-                    className={`p-3 rounded-2xl border transition cursor-pointer relative ${
+                    className={`p-4 rounded-2xl border transition cursor-pointer relative min-h-[105px] flex flex-col justify-between ${
                       isSelected
-                        ? 'bg-amber-500/10 border-amber-400 ring-2 ring-amber-400/20'
-                        : 'bg-slate-950/70 border-slate-800 hover:border-slate-700'
+                        ? 'bg-zinc-900 border-sky-400 ring-2 ring-sky-400/20'
+                        : 'bg-zinc-900/60 border-zinc-800 hover:border-zinc-700'
                     }`}
                   >
-                    <div className="flex items-start justify-between">
+                    <div className="flex items-start justify-between gap-2">
                       <div>
-                        <h4 className="font-bold text-white text-xs flex items-center gap-1.5">
+                        <h4 className="font-bold text-white text-sm flex items-center gap-1.5">
                           {store.name}
                         </h4>
-                        <p className="text-[11px] text-slate-400 truncate max-w-[210px] mt-0.5">
+                        <p className="text-xs text-zinc-400 truncate max-w-[230px] mt-0.5">
                           {store.address}
                         </p>
                       </div>
-                      <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-extrabold shrink-0">
+                      <span className="px-2 py-0.5 rounded-md bg-sky-500/20 text-sky-300 text-xs font-extrabold shrink-0 border border-sky-500/30">
                         -{store.discountPercent}% OFF
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-3 mt-2 text-[10px] text-slate-400 pt-2 border-t border-slate-800/80">
+                    <div className="flex items-center gap-3 mt-3 text-xs text-zinc-400 pt-2.5 border-t border-zinc-800/80">
                       <span className="flex items-center gap-1 text-sky-400 font-semibold">
-                        <MapPin className="w-3 h-3" /> {store.distanceKm} km ({store.etaMinutes} min)
+                        <MapPin className="w-3.5 h-3.5" /> {store.distanceKm} km ({store.etaMinutes} min)
                       </span>
-                      <span className="flex items-center gap-1 text-slate-300">
-                        <Clock className="w-3 h-3 text-amber-400" /> Pronto em {store.pickupReadyMinutes} min
+                      <span className="flex items-center gap-1 text-zinc-300">
+                        <Clock className="w-3.5 h-3.5 text-zinc-400" /> Pronto em {store.pickupReadyMinutes} min
                       </span>
-                      <span className="text-amber-400 font-bold ml-auto">
+                      <span className="text-zinc-200 font-bold ml-auto">
                         ★ {store.rating}
                       </span>
                     </div>
@@ -209,21 +209,21 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
           {/* Smart Material List generated by AI */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-bold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider">
-                <Receipt className="w-3.5 h-3.5 text-amber-400" />
+              <label className="text-xs font-bold text-zinc-300 flex items-center gap-1.5 uppercase tracking-wider">
+                <Receipt className="w-3.5 h-3.5 text-sky-400" />
                 2. Materiais Estimados para: "{serviceTitle}"
               </label>
-              <span className="text-[11px] text-slate-400">
+              <span className="text-[11px] text-zinc-400">
                 {selectedItems.length} selecionados
               </span>
             </div>
 
-            <div className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden divide-y divide-slate-800/80">
+            <div className="bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden divide-y divide-zinc-800">
               {items.map((item) => (
                 <div
                   key={item.id}
                   className={`p-3 flex items-center justify-between gap-3 transition ${
-                    item.selected ? 'bg-slate-900/40' : 'opacity-50'
+                    item.selected ? 'bg-zinc-900/40' : 'opacity-50'
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
@@ -231,29 +231,29 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
                       type="checkbox"
                       checked={item.selected}
                       onChange={() => handleToggleItem(item.id)}
-                      className="w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-900 border-slate-700 cursor-pointer"
+                      className="w-4 h-4 rounded text-sky-500 focus:ring-sky-500 bg-zinc-900 border-zinc-700 cursor-pointer"
                     />
                     <div className="min-w-0">
                       <div className="font-semibold text-white text-xs truncate">
                         {item.name}
                       </div>
-                      <div className="text-[11px] text-slate-400 flex items-center gap-2">
+                      <div className="text-[11px] text-zinc-400 flex items-center gap-2">
                         {item.suggestedBrand && (
-                          <span className="text-slate-400">Marca: {item.suggestedBrand}</span>
+                          <span className="text-zinc-400">Marca: {item.suggestedBrand}</span>
                         )}
                         <span>•</span>
-                        <span className="text-emerald-400 font-medium">Em estoque na loja</span>
+                        <span className="text-sky-400 font-medium">Em estoque na loja</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3 shrink-0">
                     {/* Quantity controls */}
-                    <div className="flex items-center bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+                    <div className="flex items-center bg-zinc-800 border border-zinc-700 rounded-lg overflow-hidden">
                       <button
                         type="button"
                         onClick={() => handleQuantityChange(item.id, -1)}
-                        className="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-700"
+                        className="px-2 py-1 text-zinc-300 hover:text-white hover:bg-zinc-700"
                       >
                         <Minus className="w-2.5 h-2.5" />
                       </button>
@@ -263,7 +263,7 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleQuantityChange(item.id, 1)}
-                        className="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-700"
+                        className="px-2 py-1 text-zinc-300 hover:text-white hover:bg-zinc-700"
                       >
                         <Plus className="w-2.5 h-2.5" />
                       </button>
@@ -274,7 +274,7 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
                       <div className="font-bold text-white text-xs">
                         R$ {item.totalPrice.toFixed(2)}
                       </div>
-                      <div className="text-[10px] text-slate-500">
+                      <div className="text-[10px] text-zinc-500">
                         R$ {item.unitPrice.toFixed(2)}/{item.unit}
                       </div>
                     </div>
@@ -290,7 +290,7 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
                 value={newItemName}
                 onChange={(e) => setNewItemName(e.target.value)}
                 placeholder="+ Adicionar outro material necessário (ex: 3m cabo flexível 2.5mm)..."
-                className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-amber-400"
+                className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-500 focus:outline-hidden focus:border-sky-400"
               />
               <input
                 type="number"
@@ -298,11 +298,11 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
                 value={newItemPrice}
                 onChange={(e) => setNewItemPrice(e.target.value)}
                 placeholder="R$ Preço"
-                className="w-24 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-amber-400"
+                className="w-24 bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-500 focus:outline-hidden focus:border-sky-400"
               />
               <button
                 type="submit"
-                className="py-2 px-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition"
+                className="py-2 px-3 bg-zinc-800 hover:bg-zinc-700 text-white font-bold rounded-xl transition"
               >
                 Adicionar
               </button>
@@ -310,30 +310,30 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
           </div>
 
           {/* Pricing summary */}
-          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
-            <div className="flex justify-between text-slate-400 text-xs">
+          <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-2">
+            <div className="flex justify-between text-zinc-400 text-xs">
               <span>Subtotal da Tabela Loja:</span>
               <span>R$ {subtotal.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between text-emerald-400 text-xs font-semibold">
+            <div className="flex justify-between text-sky-400 text-xs font-semibold">
               <span className="flex items-center gap-1">
                 <Percent className="w-3.5 h-3.5" />
                 Desconto Parceria ProServiços ({selectedStore.discountPercent}%):
               </span>
               <span>- R$ {discountAmount.toFixed(2)}</span>
             </div>
-            <div className="pt-2 border-t border-slate-800 flex justify-between items-center">
+            <div className="pt-2 border-t border-zinc-800 flex justify-between items-center">
               <div>
                 <span className="text-white font-bold text-sm block">Total de Materiais:</span>
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[11px] text-zinc-400">
                   Retirada no balcão da {selectedStore.name}
                 </span>
               </div>
               <div className="text-right">
-                <span className="text-lg font-black text-amber-400">
+                <span className="text-lg font-black text-sky-400">
                   R$ {finalTotal.toFixed(2)}
                 </span>
-                <span className="text-[10px] text-emerald-400 block font-medium">
+                <span className="text-[10px] text-sky-300 block font-medium">
                   Economia de R$ {discountAmount.toFixed(2)}
                 </span>
               </div>
@@ -341,8 +341,8 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
           </div>
 
           {/* Notice of Transparency */}
-          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-slate-300 text-[11px] flex items-center gap-2.5">
-            <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0" />
+          <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 text-[11px] flex items-center gap-2.5">
+            <ShieldCheck className="w-5 h-5 text-sky-400 shrink-0" />
             <div>
               <strong className="text-white">Transparência Total:</strong> O cliente visualiza a nota fiscal da loja parceira diretamente no aplicativo, garantindo que não há sobrepreço em materiais.
             </div>
@@ -375,7 +375,7 @@ export const MaterialsStoreModal: React.FC<MaterialsStoreModalProps> = ({
               <button
                 type="button"
                 onClick={handleConfirmQuote}
-                className="flex-1 sm:flex-initial py-2.5 px-5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 transition shadow-lg shadow-amber-500/25"
+                className="flex-1 sm:flex-initial py-2.5 px-5 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs"
               >
                 <Check className="w-4 h-4" />
                 <span>Incluir no Orçamento</span>

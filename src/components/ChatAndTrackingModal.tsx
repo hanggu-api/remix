@@ -274,11 +274,11 @@ export const ChatAndTrackingModal: React.FC<ChatAndTrackingModalProps> = ({
                   placeholder="Escreva uma mensagem..."
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  className="flex-1 px-4 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-amber-500/30 focus:outline-none"
+                  className="flex-1 px-4 py-2 rounded-xl border border-zinc-200 text-xs focus:ring-2 focus:ring-sky-400 focus:outline-none"
                 />
                 <button
                   type="submit"
-                  className="p-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white shadow-xs transition"
+                  className="p-2.5 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold shadow-xs transition"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -366,7 +366,7 @@ export const ChatAndTrackingModal: React.FC<ChatAndTrackingModalProps> = ({
               <button
                 disabled={isSimulatingMove || distanceKm === 0}
                 onClick={handleSimulateMovement}
-                className="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-xs shadow-md shadow-blue-600/20 transition flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-xl bg-sky-400 hover:bg-sky-500 disabled:opacity-50 text-zinc-950 font-bold text-xs shadow-xs transition flex items-center justify-center gap-2"
               >
                 <Car className="w-4 h-4" />
                 <span>

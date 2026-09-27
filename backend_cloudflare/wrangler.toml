@@ -1,0 +1,20 @@
+name = "proservicos-backend"
+main = "src/worker.ts"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT = "production"
+APP_NAME = "ProServicos Cloudflare Edge API"
+CORS_ALLOW_ORIGIN = "*"
+
+# Banco de dados relacional Cloudflare D1
+[[d1_databases]]
+binding = "DB"
+database_name = "proservicos-d1"
+database_id = "00000000-0000-0000-0000-000000000000" # Substitua com o ID gerado pelo wrangler d1 create
+
+# Cache de alta velocidade Cloudflare KV (opcional para sessões e radar rápido)
+[[kv_namespaces]]
+binding = "KV_CACHE"
+id = "00000000000000000000000000000000"

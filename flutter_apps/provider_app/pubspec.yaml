@@ -1,0 +1,26 @@
+name: provider_app
+description: "ProServiços - Aplicativo do Prestador em Flutter para receber chamados do radar Cloudflare, enviar orçamentos e gerenciar carteira PIX."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  http: ^1.2.0
+  google_fonts: ^6.2.1
+  provider: ^6.1.2
+  intl: ^0.19.0
+  uuid: ^4.5.1
+  cached_network_image: ^3.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

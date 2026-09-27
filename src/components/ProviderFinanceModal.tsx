@@ -227,41 +227,41 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
         className="relative w-full max-w-3xl lg:max-w-4xl bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-200"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white">
+        <div className="flex items-center justify-between px-6 py-4 bg-zinc-950 text-white border-b border-zinc-800">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-400/30 shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-zinc-900 text-sky-400 flex items-center justify-center border border-zinc-800 shrink-0">
               <Wallet className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-base font-bold">Cockpit Financeiro & Evolução de Ganhos</h2>
                 <span
-                  className={`text-[10px] font-black px-2 py-0.5 rounded-full border ${tierConfig.badgeBg} ${tierConfig.badgeText} ${tierConfig.borderColor}`}
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${tierConfig.badgeBg} ${tierConfig.badgeText} ${tierConfig.borderColor}`}
                 >
                   {tierConfig.badgeLabel}
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-zinc-400">
                 Gestão analítica de faturamento mensal, taxa MEI e saques PIX
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+            className="p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex border-b border-slate-200 bg-slate-50 px-4 sm:px-6 overflow-x-auto">
+        <div className="flex border-b border-zinc-200 bg-zinc-50 px-4 sm:px-6 overflow-x-auto">
           <button
             onClick={() => setActiveTab('overview')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition whitespace-nowrap ${
               activeTab === 'overview'
-                ? 'border-indigo-600 text-indigo-700 bg-white'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
+                ? 'border-sky-500 text-sky-900 bg-white'
+                : 'border-transparent text-zinc-500 hover:text-zinc-800'
             }`}
           >
             <TrendingUp className="w-4 h-4" />
@@ -272,19 +272,19 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
             onClick={() => setActiveTab('evolution')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition whitespace-nowrap ${
               activeTab === 'evolution'
-                ? 'border-indigo-600 text-indigo-700 bg-white'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
+                ? 'border-sky-500 text-sky-900 bg-white'
+                : 'border-transparent text-zinc-500 hover:text-zinc-800'
             }`}
           >
-            <BarChart3 className="w-4 h-4 text-indigo-600" />
+            <BarChart3 className="w-4 h-4 text-sky-600" />
             Evolução Mensal (Recharts)
           </button>
           <button
             onClick={() => setActiveTab('receipt')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition whitespace-nowrap ${
               activeTab === 'receipt'
-                ? 'border-indigo-600 text-indigo-700 bg-white'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
+                ? 'border-sky-500 text-sky-900 bg-white'
+                : 'border-transparent text-zinc-500 hover:text-zinc-800'
             }`}
           >
             <FileText className="w-4 h-4" />
@@ -294,8 +294,8 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
             onClick={() => setActiveTab('history')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition whitespace-nowrap ${
               activeTab === 'history'
-                ? 'border-indigo-600 text-indigo-700 bg-white'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
+                ? 'border-sky-500 text-sky-900 bg-white'
+                : 'border-transparent text-zinc-500 hover:text-zinc-800'
             }`}
           >
             <Calendar className="w-4 h-4" />
@@ -347,24 +347,24 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
               </div>
 
               {/* Instant PIX Cashout Banner */}
-              <div className="p-4 bg-gradient-to-r from-emerald-600 to-teal-700 rounded-xl text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+              <div className="p-4 bg-zinc-950 border border-zinc-800 rounded-xl text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
                 <div>
-                  <h4 className="text-sm font-bold flex items-center gap-1.5">
-                    <ArrowDownToLine className="w-4 h-4" />
+                  <h4 className="text-sm font-bold flex items-center gap-1.5 text-white">
+                    <ArrowDownToLine className="w-4 h-4 text-sky-400" />
                     Saque Instantâneo via PIX
                   </h4>
-                  <p className="text-xs text-emerald-100 mt-0.5">
-                    Chave PIX cadastrada: <strong className="font-mono text-white">{provider.phone}</strong> (Sem tarifas)
+                  <p className="text-xs text-zinc-400 mt-0.5">
+                    Chave PIX cadastrada: <strong className="font-mono text-sky-300">{provider.phone}</strong> (Sem tarifas)
                   </p>
                 </div>
                 <button
                   onClick={handleWithdrawPix}
                   disabled={isWithdrawing || availableBalance <= 0}
-                  className="px-4 py-2 bg-white text-emerald-800 hover:bg-emerald-50 rounded-lg font-bold text-xs shadow-sm transition disabled:opacity-50 flex items-center gap-2 self-start sm:self-auto shrink-0"
+                  className="px-4 py-2 bg-sky-400 hover:bg-sky-500 text-zinc-950 rounded-lg font-bold text-xs shadow-xs transition disabled:opacity-50 flex items-center gap-2 self-start sm:self-auto shrink-0"
                 >
                   {isWithdrawing ? (
                     <>
-                      <span className="w-3.5 h-3.5 border-2 border-emerald-800 border-t-transparent rounded-full animate-spin" />
+                      <span className="w-3.5 h-3.5 border-2 border-zinc-950 border-t-transparent rounded-full animate-spin" />
                       Enviando PIX...
                     </>
                   ) : (
@@ -377,8 +377,8 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
               </div>
 
               {withdrawSuccess && (
-                <div className="p-3 bg-emerald-100 text-emerald-900 text-xs font-semibold rounded-xl border border-emerald-300 flex items-center gap-2 animate-in fade-in">
-                  <CheckCircle className="w-4 h-4 text-emerald-700" />
+                <div className="p-3 bg-sky-50 text-sky-950 text-xs font-semibold rounded-xl border border-sky-200 flex items-center gap-2 animate-in fade-in">
+                  <CheckCircle className="w-4 h-4 text-sky-600" />
                   <span>Transferência PIX realizada com sucesso no Banco Central! O saldo já caiu na sua conta.</span>
                 </div>
               )}
@@ -552,14 +552,14 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
 
               {/* Chart Controls Toolbar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-200">
-                <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 self-start sm:self-auto">
+                <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-zinc-200 self-start sm:self-auto">
                   <button
                     type="button"
                     onClick={() => setChartPeriod('6m')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
                       chartPeriod === '6m'
-                        ? 'bg-indigo-600 text-white shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-sky-400 text-zinc-950 shadow-xs'
+                        : 'text-zinc-600 hover:text-zinc-900'
                     }`}
                   >
                     Últimos 6 Meses
@@ -569,8 +569,8 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
                     onClick={() => setChartPeriod('12m')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
                       chartPeriod === '12m'
-                        ? 'bg-indigo-600 text-white shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-sky-400 text-zinc-950 shadow-xs'
+                        : 'text-zinc-600 hover:text-zinc-900'
                     }`}
                   >
                     12 Meses (Anual)
@@ -578,14 +578,14 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
                 </div>
 
                 {/* Chart Type Selector */}
-                <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 self-start sm:self-auto">
+                <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-zinc-200 self-start sm:self-auto">
                   <button
                     type="button"
                     onClick={() => setChartType('area')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
                       chartType === 'area'
-                        ? 'bg-indigo-600 text-white shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-sky-400 text-zinc-950 shadow-xs'
+                        : 'text-zinc-600 hover:text-zinc-900'
                     }`}
                     title="Gráfico de Área Suave"
                   >
@@ -597,8 +597,8 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
                     onClick={() => setChartType('bar')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
                       chartType === 'bar'
-                        ? 'bg-indigo-600 text-white shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-sky-400 text-zinc-950 shadow-xs'
+                        : 'text-zinc-600 hover:text-zinc-900'
                     }`}
                     title="Gráfico de Barras Comparativo"
                   >
@@ -610,8 +610,8 @@ export const ProviderFinanceModal: React.FC<ProviderFinanceModalProps> = ({
                     onClick={() => setChartType('services')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
                       chartType === 'services'
-                        ? 'bg-indigo-600 text-white shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-sky-400 text-zinc-950 shadow-xs'
+                        : 'text-zinc-600 hover:text-zinc-900'
                     }`}
                     title="Volume de Serviços Realizados"
                   >

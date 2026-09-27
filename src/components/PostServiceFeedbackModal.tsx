@@ -171,20 +171,20 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
         className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-200"
       >
         {/* Header */}
-        <div className="relative px-6 py-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white shrink-0">
+        <div className="relative px-6 py-5 bg-zinc-950 text-white border-b border-zinc-800 shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-md shadow-amber-400/20">
+              <div className="w-10 h-10 rounded-2xl bg-zinc-900 text-sky-400 border border-zinc-800 flex items-center justify-center font-bold shadow-xs">
                 <Star className="w-5 h-5 fill-current" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-base font-extrabold tracking-tight">Avaliar Atendimento</h3>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30">
                     Serviço Concluído
                   </span>
                 </div>
-                <p className="text-xs text-slate-300">
+                <p className="text-xs text-zinc-400">
                   Sua avaliação ajuda outros clientes e valoriza bons profissionais
                 </p>
               </div>
@@ -192,7 +192,7 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
             <button
               id="close-feedback-modal-btn"
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition"
+              className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition"
               title="Fechar"
             >
               <X className="w-5 h-5" />
@@ -203,17 +203,17 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
         {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-5">
           {/* Provider and Service Overview Header Banner */}
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-3">
+          <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
               <div className="relative shrink-0">
                 <img
                   src={provider.avatar}
                   alt={provider.name}
-                  className="w-14 h-14 rounded-2xl object-cover border-2 border-white shadow-sm bg-slate-200"
+                  className="w-14 h-14 rounded-2xl object-cover border-2 border-white shadow-2xs bg-zinc-200"
                 />
                 {provider.facialVerified && (
                   <span
-                    className="absolute -bottom-1 -right-1 bg-emerald-500 text-white p-0.5 rounded-full shadow"
+                    className="absolute -bottom-1 -right-1 bg-sky-500 text-white p-0.5 rounded-full shadow-xs"
                     title="Validação Facial Biométrica Aprovada"
                   >
                     <ShieldCheck className="w-3.5 h-3.5" />
@@ -222,8 +222,8 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  <h4 className="text-sm font-bold text-slate-900 truncate">{provider.name}</h4>
-                  <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-amber-100 text-amber-900">
+                  <h4 className="text-sm font-bold text-zinc-950 truncate">{provider.name}</h4>
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-sky-50 text-sky-800 border border-sky-200">
                     {provider.category || 'Eletricista'}
                   </span>
                 </div>
@@ -435,8 +435,8 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                           onClick={() => handleAspectChange('punctuality', s)}
                           className={`w-6 h-6 rounded-md text-[10px] font-bold flex items-center justify-center transition ${
                             s <= aspectRatings.punctuality
-                              ? 'bg-amber-400 text-slate-950 font-black'
-                              : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                              ? 'bg-sky-400 text-zinc-950 font-black'
+                              : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'
                           }`}
                         >
                           {s}
@@ -459,8 +459,8 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                           onClick={() => handleAspectChange('quality', s)}
                           className={`w-6 h-6 rounded-md text-[10px] font-bold flex items-center justify-center transition ${
                             s <= aspectRatings.quality
-                              ? 'bg-amber-400 text-slate-950 font-black'
-                              : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                              ? 'bg-sky-400 text-zinc-950 font-black'
+                              : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'
                           }`}
                         >
                           {s}
@@ -483,8 +483,8 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                           onClick={() => handleAspectChange('cleanliness', s)}
                           className={`w-6 h-6 rounded-md text-[10px] font-bold flex items-center justify-center transition ${
                             s <= aspectRatings.cleanliness
-                              ? 'bg-amber-400 text-slate-950 font-black'
-                              : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                              ? 'bg-sky-400 text-zinc-950 font-black'
+                              : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'
                           }`}
                         >
                           {s}
@@ -507,8 +507,8 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                           onClick={() => handleAspectChange('communication', s)}
                           className={`w-6 h-6 rounded-md text-[10px] font-bold flex items-center justify-center transition ${
                             s <= aspectRatings.communication
-                              ? 'bg-amber-400 text-slate-950 font-black'
-                              : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                              ? 'bg-sky-400 text-zinc-950 font-black'
+                              : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'
                           }`}
                         >
                           {s}
@@ -534,8 +534,8 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                         onClick={() => handleToggleTag(tag)}
                         className={`py-1.5 px-3 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
                           isSelected
-                            ? 'bg-amber-500 text-slate-950 font-bold shadow-xs'
-                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                            ? 'bg-sky-400 text-zinc-950 font-bold shadow-xs'
+                            : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700'
                         }`}
                       >
                         {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
@@ -553,7 +553,7 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                     htmlFor="feedback-comment-textarea"
                     className="text-xs font-bold text-slate-800 flex items-center gap-1.5"
                   >
-                    <MessageSquare className="w-3.5 h-3.5 text-amber-600" />
+                    <MessageSquare className="w-3.5 h-3.5 text-sky-600" />
                     <span>Seu depoimento sobre o serviço</span>
                   </label>
                   <span className="text-[11px] text-slate-400">
@@ -567,7 +567,7 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   placeholder="Conte como foi o atendimento... O profissional chegou no horário combinado? Explicou o que estava sendo feito? Deixou o local limpo e funcionando perfeitamente?"
-                  className="w-full p-3.5 rounded-2xl border border-slate-200 bg-white text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition"
+                  className="w-full p-3.5 rounded-2xl border border-zinc-200 bg-white text-xs text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400 transition"
                 />
               </div>
 
@@ -631,13 +631,13 @@ export const PostServiceFeedbackModal: React.FC<PostServiceFeedbackModalProps> =
                   type="submit"
                   id="submit-feedback-btn"
                   disabled={isSubmitting}
-                  className="flex-1 py-3 px-5 rounded-xl bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-slate-950 font-extrabold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-2 transition disabled:opacity-50"
+                  className="flex-1 py-3 px-5 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <span>Salvando Avaliação...</span>
                   ) : (
                     <>
-                      <Star className="w-4 h-4 fill-slate-950" />
+                      <Star className="w-4 h-4 fill-zinc-950" />
                       <span>Publicar Avaliação do Profissional</span>
                     </>
                   )}

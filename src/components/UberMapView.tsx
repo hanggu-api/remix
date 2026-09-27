@@ -182,8 +182,8 @@ export const UberMapView: React.FC<UberMapViewProps> = ({
               <div
                 className={`mb-1 px-2 py-0.5 rounded-md text-[10px] font-bold shadow-md transition whitespace-nowrap flex items-center gap-1 ${
                   isSelected
-                    ? 'bg-amber-400 text-slate-950 ring-2 ring-white'
-                    : 'bg-slate-900/90 text-white border border-slate-700'
+                    ? 'bg-sky-400 text-zinc-950 ring-2 ring-white'
+                    : 'bg-zinc-900/90 text-white border border-zinc-700'
                 }`}
               >
                 <span>{pos.eta}</span>
@@ -195,7 +195,7 @@ export const UberMapView: React.FC<UberMapViewProps> = ({
               <div
                 className={`relative w-11 h-11 rounded-2xl p-0.5 shadow-xl transition flex items-center justify-center ${
                   isSelected
-                    ? 'bg-amber-400 ring-4 ring-amber-400/30'
+                    ? 'bg-sky-400 ring-4 ring-sky-400/30'
                     : 'bg-white hover:ring-2 hover:ring-white'
                 }`}
               >
@@ -206,7 +206,7 @@ export const UberMapView: React.FC<UberMapViewProps> = ({
                 />
 
                 {/* Category mini icon */}
-                <div className="absolute -bottom-1 -right-1 bg-slate-900 text-amber-400 p-1 rounded-full shadow border border-slate-700 text-[10px]">
+                <div className="absolute -bottom-1 -right-1 bg-zinc-950 text-sky-400 p-1 rounded-full shadow border border-zinc-800 text-[10px]">
                   {prov.category === 'Eletricista' && <Zap className="w-2.5 h-2.5" />}
                   {prov.category === 'Jardineiro' && <Scissors className="w-2.5 h-2.5" />}
                   {prov.category === 'Encanador' && <Wrench className="w-2.5 h-2.5" />}
@@ -217,14 +217,14 @@ export const UberMapView: React.FC<UberMapViewProps> = ({
 
                 {/* Verified badge */}
                 {prov.facialVerified && (
-                  <span className="absolute -top-1 -left-1 bg-emerald-500 text-white rounded-full p-0.5 shadow">
+                  <span className="absolute -top-1 -left-1 bg-sky-500 text-white rounded-full p-0.5 shadow">
                     <CheckCircle2 className="w-2.5 h-2.5" />
                   </span>
                 )}
               </div>
 
               {/* Provider Name pill */}
-              <div className="mt-1 bg-slate-900/90 text-slate-200 text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap border border-slate-800 shadow">
+              <div className="mt-1 bg-zinc-900/90 text-zinc-200 text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap border border-zinc-800 shadow">
                 {prov.name.split(' ')[0]} • ⭐ {prov.rating}
               </div>
             </div>
@@ -242,20 +242,20 @@ export const UberMapView: React.FC<UberMapViewProps> = ({
         >
           <div className="relative flex flex-col items-center">
             {/* Store Discount & ETA Badge */}
-            <div className="mb-1 px-2 py-0.5 rounded-md text-[10px] font-bold shadow-md whitespace-nowrap flex items-center gap-1 bg-amber-500 text-slate-950 border border-amber-300">
-              <Store className="w-2.5 h-2.5" />
+            <div className="mb-1 px-2 py-0.5 rounded-md text-[10px] font-bold shadow-md whitespace-nowrap flex items-center gap-1 bg-zinc-900 text-white border border-zinc-700">
+              <Store className="w-2.5 h-2.5 text-sky-400" />
               <span>{store.name.split(' ')[0]}</span>
               <span className="opacity-75">•</span>
-              <span className="text-emerald-950 font-black">-{store.discountPercent}%</span>
+              <span className="text-sky-300 font-bold">-{store.discountPercent}%</span>
             </div>
 
             {/* Store Icon Pin */}
-            <div className="w-9 h-9 rounded-2xl bg-amber-400 border-2 border-white shadow-xl flex items-center justify-center text-slate-950 group-hover:ring-4 group-hover:ring-amber-400/30 transition">
+            <div className="w-9 h-9 rounded-2xl bg-zinc-900 border-2 border-white shadow-xl flex items-center justify-center text-sky-400 group-hover:ring-4 group-hover:ring-sky-400/30 transition">
               <Store className="w-4 h-4" />
             </div>
 
             {/* Distance Sub-label */}
-            <div className="mt-0.5 bg-slate-950/90 text-amber-300 text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-slate-800 shadow">
+            <div className="mt-0.5 bg-zinc-950/90 text-zinc-300 text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-zinc-800 shadow">
               {store.distanceKm} km • Estoque OK
             </div>
           </div>
@@ -264,17 +264,17 @@ export const UberMapView: React.FC<UberMapViewProps> = ({
 
       {/* Floating Map Controls / Legend */}
       <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-        <div className="bg-slate-900/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-2 rounded-xl border border-slate-800 shadow-xl flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+        <div className="bg-zinc-900/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-2 rounded-xl border border-zinc-800 shadow-xl flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-sky-400 animate-ping" />
           <span>{visibleProviders.length} prestadores online no seu raio</span>
         </div>
 
         {onOpenStoreMaterials && (
           <button
             onClick={() => onOpenStoreMaterials()}
-            className="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold px-3 py-2 rounded-xl border border-amber-400 shadow-xl flex items-center gap-2 transition"
+            className="bg-sky-400 hover:bg-sky-500 text-zinc-950 text-xs font-bold px-3 py-2 rounded-xl shadow-xs flex items-center gap-2 transition"
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
+            <ShoppingBag className="w-3.5 h-3.5 fill-zinc-950" />
             <span>Lista de Materiais IA & Lojas (-10%)</span>
           </button>
         )}

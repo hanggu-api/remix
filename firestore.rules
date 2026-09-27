@@ -22,10 +22,23 @@ service cloud.firestore {
       allow update: if isSignedIn();
       allow delete: if isSignedIn() && resource.data.clientId == request.auth.uid;
 
+      // Orçamentos enviados pelos prestadores
+      match /quotes/{quoteId} {
+        allow read: if isSignedIn();
+        allow create, update: if isSignedIn();
+        allow delete: if isSignedIn() && resource.data.providerId == request.auth.uid;
+      }
+
       // Mensagens no chat do serviço
       match /messages/{messageId} {
         allow read, write: if isSignedIn();
       }
+    }
+
+    // Pagamentos em Custódia (Escrow)
+    match /escrow_transactions/{transactionId} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn();
     }
 
     // Documento de teste de conexão

@@ -256,23 +256,23 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/75 backdrop-blur-xs p-4 overflow-y-auto">
       <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden my-6">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/80">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800 bg-zinc-950 text-white">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 text-sky-400 flex items-center justify-center font-bold">
               <Bot className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-slate-800">
+              <h3 className="text-base font-bold text-white">
                 {directProvider ? `Pedir Orçamento Direto para ${directProvider.name}` : 'Solicitar Orçamento de Serviço'}
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-400">
                 A IA analisa o seu pedido e notifica todos os profissionais verificados da categoria
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition"
+            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -285,7 +285,7 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
               {/* Examples quick pills */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-xs font-semibold text-slate-600">
+                  <label className="text-xs font-semibold text-zinc-700">
                     Preenchimento rápido de teste:
                   </label>
                 </div>
@@ -293,21 +293,21 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
                   <button
                     type="button"
                     onClick={() => handlePresetExample('lampada')}
-                    className="px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-medium border border-amber-200 transition"
+                    className="px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-medium border border-zinc-200 transition"
                   >
                     💡 Trocar Lâmpadas / Soquete
                   </button>
                   <button
                     type="button"
                     onClick={() => handlePresetExample('grama')}
-                    className="px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-medium border border-emerald-200 transition"
+                    className="px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-medium border border-zinc-200 transition"
                   >
                     🌱 Cortar Gramado / Poda
                   </button>
                   <button
                     type="button"
                     onClick={() => handlePresetExample('vazamento')}
-                    className="px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-800 text-xs font-medium border border-blue-200 transition"
+                    className="px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-medium border border-zinc-200 transition"
                   >
                     🔧 Torneira / Vazamento
                   </button>
@@ -316,7 +316,7 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
 
               {/* Title */}
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-zinc-700 mb-1">
                   O que você precisa que seja feito?
                 </label>
                 <input
@@ -324,13 +324,13 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
                   placeholder="Ex: Trocar lâmpadas no teto da sala, cortar grama do jardim..."
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 text-sm font-medium text-slate-800"
+                  className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400 text-sm font-medium text-zinc-800"
                 />
               </div>
 
               {/* Description / Notes */}
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-zinc-700 mb-1">
                   Detalhes adicionais (anote observações ou medidas):
                 </label>
                 <textarea
@@ -454,7 +454,7 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
                 type="button"
                 disabled={isAnalyzing}
                 onClick={handleAnalyzeAndDispatch}
-                className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-orange-500 hover:from-amber-700 hover:to-orange-600 text-white font-bold text-sm shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2"
+                className="w-full py-3.5 px-4 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-sm shadow-xs transition flex items-center justify-center gap-2"
               >
                 {isAnalyzing ? (
                   <>
@@ -472,52 +472,52 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
           ) : (
             /* AI Analysis Screen */
             <div className="space-y-5 animate-in fade-in duration-300">
-              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 space-y-3">
+              <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-5 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-200 text-emerald-800">
-                    <CheckCircle2 className="w-4 h-4" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-950 border border-sky-200">
+                    <CheckCircle2 className="w-4 h-4 text-sky-600" />
                     ANÁLISE INTELIGENTE CONCLUÍDA
                   </span>
-                  <span className="text-xs font-semibold text-emerald-700">
+                  <span className="text-xs font-semibold text-zinc-700">
                     Urgência: <strong>{analysisResult.urgency}</strong>
                   </span>
                 </div>
 
                 <div>
-                  <h4 className="text-base font-bold text-slate-800">
+                  <h4 className="text-base font-bold text-zinc-900">
                     {analysisResult.serviceType}
                   </h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                  <p className="text-xs text-zinc-600 mt-1 leading-relaxed">
                     {analysisResult.technicalSummary}
                   </p>
                 </div>
 
                 {/* Metadata Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
-                  <div className="p-2.5 rounded-xl bg-white border border-emerald-100">
-                    <span className="text-[11px] text-slate-500 block">Profissão Alvo:</span>
-                    <strong className="text-slate-800 font-bold">{analysisResult.category}</strong>
+                  <div className="p-2.5 rounded-xl bg-white border border-zinc-200">
+                    <span className="text-[11px] text-zinc-500 block">Profissão Alvo:</span>
+                    <strong className="text-zinc-900 font-bold">{analysisResult.category}</strong>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-white border border-emerald-100">
-                    <span className="text-[11px] text-slate-500 block">Tempo Estimado:</span>
-                    <strong className="text-slate-800 font-bold">{analysisResult.estimatedDuration}</strong>
+                  <div className="p-2.5 rounded-xl bg-white border border-zinc-200">
+                    <span className="text-[11px] text-zinc-500 block">Tempo Estimado:</span>
+                    <strong className="text-zinc-900 font-bold">{analysisResult.estimatedDuration}</strong>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-white border border-emerald-100 col-span-2 sm:col-span-1">
-                    <span className="text-[11px] text-slate-500 block">Faixa Média Mercado:</span>
-                    <strong className="text-emerald-700 font-bold">{analysisResult.priceRangeEstimate}</strong>
+                  <div className="p-2.5 rounded-xl bg-white border border-zinc-200 col-span-2 sm:col-span-1">
+                    <span className="text-[11px] text-zinc-500 block">Faixa Média Mercado:</span>
+                    <strong className="text-zinc-900 font-bold">{analysisResult.priceRangeEstimate}</strong>
                   </div>
                 </div>
 
                 {/* Tools */}
                 <div>
-                  <span className="text-[11px] font-semibold text-slate-600 block mb-1">
+                  <span className="text-[11px] font-semibold text-zinc-600 block mb-1">
                     Equipamentos e ferramentas necessárias identificadas:
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {analysisResult.requiredTools.map((tool, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded-md bg-white border border-slate-200 text-[11px] text-slate-700 font-medium"
+                        className="px-2 py-0.5 rounded-md bg-white border border-zinc-200 text-[11px] text-zinc-700 font-medium"
                       >
                         {tool}
                       </span>
@@ -527,28 +527,28 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
               </div>
 
               {/* Matched Providers Notification Preview */}
-              <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+              <div className="p-4 rounded-xl border border-zinc-200 bg-zinc-50 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                    <Users className="w-4 h-4 text-amber-600" />
+                  <span className="text-xs font-bold text-zinc-800 flex items-center gap-1.5">
+                    <Users className="w-4 h-4 text-sky-600" />
                     Profissionais que receberão seu pedido ({dispatchedCount}):
                   </span>
-                  <span className="text-[11px] text-slate-500">Validados com Facial & Documento</span>
+                  <span className="text-[11px] text-zinc-500">Validados com Facial & Documento</span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {matchedProviders.map((p) => (
-                    <div key={p.id} className="p-2.5 rounded-lg bg-white border border-slate-200 flex items-center gap-2.5 shadow-xs">
+                    <div key={p.id} className="p-2.5 rounded-lg bg-white border border-zinc-200 flex items-center gap-2.5 shadow-xs">
                       <img src={p.avatar} alt={p.name} className="w-8 h-8 rounded-full object-cover" />
                       <div className="min-w-0">
-                        <div className="text-xs font-bold text-slate-800 truncate">{p.name}</div>
-                        <div className="text-[10px] text-slate-500">⭐ {p.rating} ({p.completedJobsCount} trab.)</div>
+                        <div className="text-xs font-bold text-zinc-800 truncate">{p.name}</div>
+                        <div className="text-[10px] text-zinc-500">⭐ {p.rating} ({p.completedJobsCount} trab.)</div>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <p className="text-[11px] text-slate-600 italic">
+                <p className="text-[11px] text-zinc-600 italic">
                   Eles analisarão as fotos e detalhes e enviarão os valores com as datas/horários disponíveis para você escolher.
                 </p>
               </div>
@@ -558,14 +558,14 @@ export const NewRequestModal: React.FC<NewRequestModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setAnalysisResult(null)}
-                  className="w-1/3 py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition"
+                  className="w-1/3 py-3 px-4 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold text-xs transition"
                 >
                   Editar Dados
                 </button>
                 <button
                   type="button"
                   onClick={handleConfirmAndBroadcast}
-                  className="w-2/3 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition flex items-center justify-center gap-2"
+                  className="w-2/3 py-3 px-4 rounded-xl bg-sky-400 hover:bg-sky-500 text-zinc-950 font-bold text-sm shadow-xs transition flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   <span>Confirmar e Disparar Orçamento</span>

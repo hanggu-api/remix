@@ -345,6 +345,198 @@ app.post("/api/gemini-chat", async (req, res) => {
   }
 });
 
+// ==========================================
+// Cloudflare Workers & D1 Emulation Endpoints
+// Used by Flutter Client App, Flutter Provider App & Web Hub
+// ==========================================
+let cfRequests: any[] = [
+  {
+    id: "req-1",
+    client_id: "client-1",
+    client_name: "Ana Clara Souza",
+    client_phone: "(11) 98765-4321",
+    title: "Instalação de Tomada 20A e Chuveiro",
+    description: "Troca de fiação no banheiro suíte e instalação de disjuntor bipolar.",
+    category: "Eletricista",
+    status: "open",
+    client_address: "Rua Fradique Coutinho, 1240 - Pinheiros, São Paulo - SP",
+    lat: -23.5617,
+    lng: -46.6865,
+    agreed_price: 140.0,
+    escrow_status: "none",
+    created_at: new Date().toISOString()
+  }
+];
+
+let cfQuotes: any[] = [
+  {
+    id: "quote-1",
+    request_id: "req-1",
+    provider_id: "prov-1",
+    provider_name: "Carlos Mendes",
+    provider_avatar: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=150",
+    provider_phone: "(11) 97123-4567",
+    provider_rating: 4.95,
+    provider_jobs_count: 142,
+    facial_verified: 1,
+    doc_verified: 1,
+    price_labor: 95.0,
+    price_materials: 45.0,
+    eta_minutes: 12,
+    message: "Estou a 2km com ferramentas no veículo. Chego em 12 minutos!",
+    created_at: new Date().toISOString()
+  },
+  {
+    id: "quote-2",
+    request_id: "req-1",
+    provider_id: "prov-2",
+    provider_name: "Marcos Silva",
+    provider_avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    provider_phone: "(11) 98877-6655",
+    provider_rating: 4.88,
+    provider_jobs_count: 88,
+    facial_verified: 1,
+    doc_verified: 1,
+    price_labor: 110.0,
+    price_materials: 0.0,
+    eta_minutes: 20,
+    message: "Disponibilidade imediata com garantia de 90 dias.",
+    created_at: new Date().toISOString()
+  }
+];
+
+let cfEscrows: any[] = [];
+let cfMessages: any[] = [];
+
+app.get(["/api/cloudflare/health", "/api/health/cloudflare"], (req, res) => {
+  res.json({
+    status: "ok",
+    backend: "Cloudflare Workers",
+    database: "Cloudflare D1 (Edge SQL)",
+    edge_location: "GRU (São Paulo Edge)",
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.get("/api/cloudflare/requests/radar", (req, res) => {
+  res.json(cfRequests.filter(r => r.status === "open" || r.status === "quotes_received"));
+});
+
+app.post("/api/cloudflare/requests", (req, res) => {
+  const body = req.body;
+  const newReq = {
+    id: `req-${Date.now()}`,
+    client_id: body.clientId || "client-1",
+    client_name: body.clientName || "Cliente",
+    client_phone: body.clientPhone || "",
+    title: body.title || "Novo Serviço",
+    description: body.description || "",
+    category: body.category || "Geral",
+    status: "open",
+    client_address: body.address || "São Paulo - SP",
+    lat: body.lat || -23.5617,
+    lng: body.lng || -46.6865,
+    agreed_price: body.price || 0,
+    escrow_status: "none",
+    created_at: new Date().toISOString()
+  };
+  cfRequests.unshift(newReq);
+  res.status(201).json({ success: true, request: newReq });
+});
+
+app.get("/api/cloudflare/requests/:id/quotes", (req, res) => {
+  const reqId = req.params.id;
+  const quotes = cfQuotes.filter(q => q.request_id === reqId);
+  res.json(quotes.length > 0 ? quotes : cfQuotes);
+});
+
+app.post("/api/cloudflare/requests/:id/quotes", (req, res) => {
+  const reqId = req.params.id;
+  const body = req.body;
+  const newQuote = {
+    id: `quote-${Date.now()}`,
+    request_id: reqId,
+    provider_id: body.providerId || "prov-1",
+    provider_name: body.providerName || "Carlos Mendes",
+    provider_avatar: body.providerAvatar || "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=150",
+    provider_phone: body.providerPhone || "(11) 97123-4567",
+    provider_rating: body.providerRating || 4.95,
+    provider_jobs_count: body.providerJobsCount || 100,
+    facial_verified: 1,
+    doc_verified: 1,
+    price_labor: body.priceLabor || 95,
+    price_materials: body.priceMaterials || 0,
+    eta_minutes: body.etaMinutes || 15,
+    message: body.message || "Orçamento via Cloudflare Worker",
+    created_at: new Date().toISOString()
+  };
+  cfQuotes.unshift(newQuote);
+  res.status(201).json({ success: true, quote: newQuote });
+});
+
+app.post("/api/cloudflare/requests/:id/escrow", (req, res) => {
+  const reqId = req.params.id;
+  const body = req.body;
+  const newEscrow = {
+    id: `escrow-${Date.now()}`,
+    request_id: reqId,
+    client_id: body.clientId || "client-1",
+    provider_id: body.providerId || "prov-1",
+    amount_labor: body.amountLabor || 95,
+    amount_materials: body.amountMaterials || 0,
+    total_amount: (body.amountLabor || 95) + (body.amountMaterials || 0),
+    pix_end_to_end_id: body.pixEndToEndId || `E0041699${Date.now()}`,
+    status: "held_in_custody",
+    created_at: new Date().toISOString()
+  };
+  cfEscrows.unshift(newEscrow);
+  const targetReq = cfRequests.find(r => r.id === reqId);
+  if (targetReq) {
+    targetReq.status = "in_progress";
+    targetReq.escrow_status = "held_pix";
+  }
+  res.status(201).json({ success: true, escrow: newEscrow });
+});
+
+app.post("/api/cloudflare/requests/:id/status", (req, res) => {
+  const reqId = req.params.id;
+  const { status } = req.body;
+  const targetReq = cfRequests.find(r => r.id === reqId);
+  if (targetReq) targetReq.status = status;
+  res.json({ success: true, status });
+});
+
+app.post("/api/cloudflare/requests/:id/release", (req, res) => {
+  const reqId = req.params.id;
+  const targetReq = cfRequests.find(r => r.id === reqId);
+  if (targetReq) {
+    targetReq.status = "completed";
+    targetReq.escrow_status = "released";
+  }
+  res.json({ success: true, message: "Custódia liberada via Cloudflare!" });
+});
+
+app.get("/api/cloudflare/requests/:id/messages", (req, res) => {
+  const reqId = req.params.id;
+  res.json(cfMessages.filter(m => m.request_id === reqId));
+});
+
+app.post("/api/cloudflare/requests/:id/messages", (req, res) => {
+  const reqId = req.params.id;
+  const body = req.body;
+  const msg = {
+    id: `msg-${Date.now()}`,
+    request_id: reqId,
+    sender_id: body.senderId || "user-1",
+    sender_name: body.senderName || "Usuário",
+    sender_role: body.senderRole || "client",
+    text: body.text || "",
+    created_at: new Date().toISOString()
+  };
+  cfMessages.push(msg);
+  res.status(201).json({ success: true, message: msg });
+});
+
 // Start Express server and connect Vite
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {

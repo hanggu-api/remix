@@ -53,6 +53,7 @@ import { WarrantyAndBeforeAfterModal } from './components/WarrantyAndBeforeAfter
 import { ProviderFinanceModal } from './components/ProviderFinanceModal';
 import { GeminiChatbotModal } from './components/GeminiChatbotModal';
 import { PostServiceFeedbackModal } from './components/PostServiceFeedbackModal';
+import { CloudflareDualAppModal } from './components/CloudflareDualAppModal';
 import { notificationService } from './services/notificationService';
 import {
   auth,
@@ -105,6 +106,7 @@ export default function App() {
   const [isNewRequestModalOpen, setIsNewRequestModalOpen] = useState(false);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const [isVercelModalOpen, setIsVercelModalOpen] = useState(false);
+  const [isCloudflareModalOpen, setIsCloudflareModalOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState<number>(() => {
     return notificationService.getNotificationHistory().filter((n) => !n.read).length;
@@ -565,7 +567,7 @@ export default function App() {
   }
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden flex flex-col bg-slate-950 font-sans">
+    <div className="relative w-screen h-screen overflow-hidden flex flex-col bg-zinc-950 font-sans">
       {/* Top Navbar Header */}
       <Navbar
         currentUser={currentUser}
@@ -591,6 +593,7 @@ export default function App() {
         unreadNotificationCount={unreadCount}
         onOpenFinanceModal={() => setIsFinanceModalOpen(true)}
         onOpenWarrantyModal={() => setIsWarrantyModalOpen(true)}
+        onOpenCloudflareModal={() => setIsCloudflareModalOpen(true)}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
@@ -617,6 +620,22 @@ export default function App() {
           providerEtaMinutes={providerEtaMinutes}
           serviceStep={serviceStep}
         />
+
+        {/* Floating Dual-App Cloudflare Banner */}
+        <div className="absolute top-4 left-4 z-20 hidden sm:flex items-center gap-2">
+          <button
+            onClick={() => setIsCloudflareModalOpen(true)}
+            className="py-2 px-3.5 rounded-2xl bg-zinc-950/90 hover:bg-zinc-900 text-white backdrop-blur-md border border-amber-400/50 shadow-xl transition flex items-center gap-2 group cursor-pointer"
+          >
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
+            <span className="text-xs font-bold text-zinc-100">
+              Arquitetura Dividida: <span className="text-amber-400">2 Apps Flutter</span> + <span className="text-sky-400">Cloudflare D1</span>
+            </span>
+            <span className="text-[10px] bg-amber-500/20 text-amber-300 font-extrabold px-2 py-0.5 rounded-md border border-amber-500/30">
+              Ver Código & Deploy
+            </span>
+          </button>
+        </div>
 
         {/* If Current User is Client: Show Uber Bottom Sheet */}
         {currentUser.role === 'client' ? (
@@ -846,6 +865,12 @@ export default function App() {
           }}
         />
       )}
+
+      {/* Cloudflare Workers & Flutter Dual App Hub Modal */}
+      <CloudflareDualAppModal
+        isOpen={isCloudflareModalOpen}
+        onClose={() => setIsCloudflareModalOpen(false)}
+      />
     </div>
   );
 }
