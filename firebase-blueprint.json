@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Perfil de usuário ou prestador no ProServiços",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["client", "provider"] },
+        "phone": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "rating": { "type": "number" },
+        "tier": { "type": "string" },
+        "facialVerified": { "type": "boolean" },
+        "documentVerified": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "ServiceRequest": {
+      "title": "ServiceRequest",
+      "description": "Pedido de serviço residencial ou comercial",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string" },
+        "urgency": { "type": "string" },
+        "locationAddress": { "type": "string" },
+        "priceRange": { "type": "string" },
+        "selectedQuoteId": { "type": "string" },
+        "escrowStatus": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "clientId", "title", "category", "status"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Mensagem do chat de atendimento de serviço",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "requestId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderRole": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "requestId", "senderId", "text"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Perfis dos clientes e prestadores cadastrados"
+    },
+    "/requests/{requestId}": {
+      "schema": "ServiceRequest",
+      "description": "Pedidos de serviços registrados"
+    },
+    "/requests/{requestId}/messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "Mensagens de negociação e atendimento"
+    }
+  }
+}
